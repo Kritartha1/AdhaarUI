@@ -1,79 +1,76 @@
-<p>
-    sdhvskhvjksnvjksnjvkhdsjknvjkscjkvn kjscxnvjk bsc kbvb sfbv kscbv kcb kc kcb ckbmvkcsjbv jdsb cjds vjdsbcdcdc
-    dcdbjksn vks  dv
-    dvbbbcjdsdbj
-    jdsdcjscjkkh 
-    ddhccuidscjjkj
-    kjncjdsk
-</p>
-
-<button type="button" class="btn btn-light" (click)="popUpVisible()">
-    Select image
-</button>
-
-<p>
-    sdhvskhvjksnvjksnjvkhdsjknvjkscjkvn kjscxnvjk bsc kbvb sfbv kscbv kcb kc kcb ckbmvkcsjbv jdsb cjds vjdsbcdcdc
-    dcdbjksn vks  dv
-    dvbbbcjdsdbj
-    jdsdcjscjkkh 
-    ddhccuidscjjkj
-    kjncjdsk
-</p>
-<p>
-    sdhvskhvjksnvjksnjvkhdsjknvjkscjkvn kjscxnvjk bsc kbvb sfbv kscbv kcb kc kcb ckbmvkcsjbv jdsb cjds vjdsbcdcdc
-    dcdbjksn vks  dv
-    dvbbbcjdsdbj
-    jdsdcjscjkkh 
-    ddhccuidscjjkj
-    kjncjdsk
-</p>
-<p>
-    sdhvskhvjksnvjksnjvkhdsjknvjkscjkvn kjscxnvjk bsc kbvb sfbv kscbv kcb kc kcb ckbmvkcsjbv jdsb cjds vjdsbcdcdc
-    dcdbjksn vks  dv
-    dvbbbcjdsdbj
-    jdsdcjscjkkh 
-    ddhccuidscjjkj
-    kjncjdsk
-</p>
-<p>
-    sdhvskhvjksnvjksnjvkhdsjknvjkscjkvn kjscxnvjk bsc kbvb sfbv kscbv kcb kc kcb ckbmvkcsjbv jdsb cjds vjdsbcdcdc
-    dcdbjksn vks  dv
-    dvbbbcjdsdbj
-    jdsdcjscjkkh 
-    ddhccuidscjjkj
-    kjncjdsk
-</p>
-<p>
-    sdhvskhvjksnvjksnjvkhdsjknvjkscjkvn kjscxnvjk bsc kbvb sfbv kscbv kcb kc kcb ckbmvkcsjbv jdsb cjds vjdsbcdcdc
-    dcdbjksn vks  dv
-    dvbbbcjdsdbj
-    jdsdcjscjkkh 
-    ddhccuidscjjkj
-    kjncjdsk
-</p>
-<p>
-    sdhvskhvjksnvjksnjvkhdsjknvjkscjkvn kjscxnvjk bsc kbvb sfbv kscbv kcb kc kcb ckbmvkcsjbv jdsb cjds vjdsbcdcdc
-    dcdbjksn vks  dv
-    dvbbbcjdsdbj
-    jdsdcjscjkkh 
-    ddhccuidscjjkj
-    kjncjdsk
-</p>
-<p>
-    sdhvskhvjksnvjksnjvkhdsjknvjkscjkvn kjscxnvjk bsc kbvb sfbv kscbv kcb kc kcb ckbmvkcsjbv jdsb cjds vjdsbcdcdc
-    dcdbjksn vks  dv
-    dvbbbcjdsdbj
-    jdsdcjscjkkh 
-    ddhccuidscjjkj
-    kjncjdsk
-</p>
-
-
-<div class="images-container-modal" [ngClass]="{'d-block':toggle,
-'d-none':!toggle}">
-    <button type="button" class="btn btn-light" 
-    style="position: fixed;top:10px;right:10px;" (click)="popUpClose()">
-    X
+<nav
+  class="navbar navbar-expand-lg p-2 navbar-light fixed-top "
+  style="background-color:black;"
+>
+  <div class="container-fluid fontSize ">
+    <a class="navbar-brand fontStyle border-black" href="#">IdentifyMe</a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+      style="background: #bedbba;"
+    
+    >
+      <span class="navbar-toggler-icon"></span>
     </button>
-    <app-image-selector></app-image-selector>
-</div>
+
+    <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+      <ul class="navbar-nav me-1 mb-2 mb-lg-0">
+        <ng-container *ngIf="true">
+          <li class="nav-item btn-hover color-5">
+            <a
+              class="nav-link active pulse"
+              aria-current="page"
+              [routerLink]="['/']"
+              >Manage Doctors</a
+            >
+          </li>
+        </ng-container>
+      </ul>
+
+      <div class="btn-group">
+        <button
+          type="button"
+          class="btn btn-secondary rounded-5"
+          style="width: 60px; height: 60px"
+          data-bs-toggle="dropdown"
+          data-bs-display="static"
+          aria-expanded="false"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="32"
+            height="43"
+            fill="currentColor"
+            class="bi bi-person-fill"
+            viewBox="0 0 16 16"
+          >
+            <path
+              d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6"
+            />
+          </svg>
+        </button>
+        <ul class="dropdown-menu dropdown-menu-lg-end">
+          <!-- if not signed in then show the first nav-item-->
+          <ng-container *ngIf="false;else showLogout" >
+            <li><a class="dropdown-item " [routerLink]="['/']" >Sign Up/Log In</a></li>
+
+            <!-- else show the other items in the list  -->
+            
+          </ng-container>
+          <ng-template #showLogout>
+            <li><a class="dropdown-item" [routerLink]="['/']" >Email</a></li>
+            <li><a class="dropdown-item" href="#">Medical Records</a></li>
+            <li><a class="dropdown-item" [routerLink]="['/']">Appointments</a></li>
+            <li><a class="dropdown-item">Log Out</a></li>
+          </ng-template>
+          
+        </ul>
+      </div>
+    </div>
+  </div>
+</nav>
