@@ -1,52 +1,59 @@
 <nav
-  class="navbar navbar-expand-lg p-1 navbar-light fixed-top shadow-lg rounded-4  d-flex justify-content-evenly"
-  style="   background: white;
-  width: 20%;
-  margin: auto;
-  margin-top: 40px;"
+  class="navbar navbar-expand-lg p-1 navbar-light fixed-top shadow-lg rounded-4 "
+  style=" margin: 41px; background: white;height: 78px;width: auto;"
   
 >
-  <div class="container-fluid fontSize ">
+  <div class="container-fluid fontSize  display: flex; justify-content-center">
+    <a class="navbar-brand fontStyle border-black" href="#">IdentifyMe</a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+      style="background: #bedbba;"
     
-    <div>
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
 
-        <a class="navbar-brand fontStyle " href="#">IdentifyMe</a>
+    <div class=" " >
+      <ul class="navbar-nav me-1 mb-2 mb-lg-0">
+        <ng-container *ngIf="true">
+          <li class="nav-item btn-hover color-5">
+            <a
+              class="nav-link active pulse"
+              aria-current="page"
+              [routerLink]="['/']"
+              >About us</a
+            >
+          </li>
+        </ng-container>
+      </ul>
+
+      <div class="btn-group">
         <button
-          class="navbar-toggler"
           type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-          style="background: #bedbba;"
-        
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-    </div>
-        
-   
-   <div class="collapse navbar-collapse ">
-    <a
-    class="nav-link active pulse"
-    aria-current="page"
-    [routerLink]="['/']"
-    >About us</a
-  >
-   </div>
-
-    
-            
-         
-      <div class="btn-group collapse navbar-collapse " >
-        <button
-          style="background: white;border:white"
+          class="btn btn-secondary rounded-5"
+          style="width: 60px; height: 60px"
           data-bs-toggle="dropdown"
           data-bs-display="static"
           aria-expanded="false"
         >
-          User
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="32"
+            height="43"
+            fill="currentColor"
+            class="bi bi-person-fill"
+            viewBox="0 0 16 16"
+          >
+            <path
+              d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6"
+            />
+          </svg>
         </button>
         <ul class="dropdown-menu dropdown-menu-lg-end">
           <!-- if not signed in then show the first nav-item-->
@@ -66,7 +73,7 @@
         </ul>
       </div>
     </div>
-  
+  </div>
 
  
 </nav>
