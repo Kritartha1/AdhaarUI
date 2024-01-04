@@ -7,6 +7,7 @@ import { NavbarComponent } from './core/components/navbar/navbar.component';
 import { ImageSelectorComponent } from './shared/components/image-selector/image-selector.component';
 import { CheckIdentityComponent } from './features/identification/check-identity/check-identity.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HomepageComponent } from './core/components/homepage/homepage.component';
 
 
 @NgModule({
@@ -15,6 +16,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     NavbarComponent,
     ImageSelectorComponent,
     CheckIdentityComponent,
+    HomepageComponent,
 
   ],
   imports: [
