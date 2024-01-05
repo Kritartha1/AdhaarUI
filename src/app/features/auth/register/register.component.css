@@ -24,7 +24,7 @@ body{
 }
 .shape:first-child{
     background: linear-gradient(
-        #1845ad,
+        #42be29,
         #23a2f6
     );
     left: -80px;
@@ -33,7 +33,7 @@ body{
 .shape:last-child{
     background: linear-gradient(
         to right,
-        #ff512f,
+        #2f86ce,
         #f09819
     );
     right: -30px;
@@ -43,7 +43,7 @@ form{
     height: 520px;
     width: 400px;
     /* background: linear-gradient(120deg, #d4fc79 0%, #96e6a1 100%); */
-    background-color: rgb(148, 211, 153);
+    background-color: rgb(211, 148, 167);
     position: absolute;
     transform: translate(-50%,-50%);
     top: 50%;
@@ -128,3 +128,20 @@ button{
   margin-right: 4px;
   box-shadow: inherit;
 }
+.waviy {
+   
+  
+  
+    /* position: relative;
+    display: inline-block; */
+    font-size: 40px;
+    color: #fff;
+    text-transform: uppercase;
+    animation: flip 2s infinite;
+    animation-delay: calc(.2s * var(--i))
+  }
+  @keyframes flip {
+    0%,80% {
+      transform: rotateY(360deg) 
+    }
+  }
