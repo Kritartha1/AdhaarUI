@@ -8,6 +8,11 @@ import { ImageSelectorComponent } from './shared/components/image-selector/image
 import { CheckIdentityComponent } from './features/identification/check-identity/check-identity.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HomepageComponent } from './core/components/homepage/homepage.component';
+import { NewNavbarComponent } from './core/components/new-navbar/new-navbar.component';
+import { LoginComponent } from './features/auth/login/login.component';
+import { RegisterComponent } from './features/auth/register/register.component';
+import { OcrComponent } from './features/ocr/ocr.component';
+
 
 
 @NgModule({
@@ -17,6 +22,10 @@ import { HomepageComponent } from './core/components/homepage/homepage.component
     ImageSelectorComponent,
     CheckIdentityComponent,
     HomepageComponent,
+    NewNavbarComponent,
+    LoginComponent,
+    RegisterComponent,
+    OcrComponent
 
   ],
   imports: [
