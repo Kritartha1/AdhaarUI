@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { from, Observable } from 'rxjs';
 import * as Tesseract from 'tesseract.js';
 import { createWorker } from 'tesseract.js';
 
@@ -10,14 +11,17 @@ import { createWorker } from 'tesseract.js';
 })
 export class NavbarComponent {
 
-  worker: Tesseract.Worker | undefined;
+
   toggle: boolean = false;
-  text: Tesseract.RecognizeResult | undefined;
+
+
+
   /**
    *
    */
   constructor() {
     this.OCR();
+
 
   }
 
@@ -33,14 +37,26 @@ export class NavbarComponent {
 
   async OCR() {
     Tesseract.recognize(
-      'https://5.imimg.com/data5/SELLER/Default/2022/7/IO/GF/GR/97397727/school-id-card.jpg',
+      'assets/MicrosoftTeams-image (1).png',
       'eng',
+
       { logger: m => console.log(m) }
     ).then(({ data: { text } }) => {
+      text = this.textFormat(text);
       console.log(text);
-    });
 
+    });
 
   }
 
+  textFormat(str: string): string {
+    return str.replace(/[\s~`!@#$%^&*()_+\-={[}\]|\\:;"'<,>.?/]+/g, '')
+    // return str
+  }
+
+
+
 }
+
+
+
