@@ -7,6 +7,7 @@
 }
 body{
     background-color: #f1f8f600;
+    
 }
 .background{
     width: 430px;
@@ -40,6 +41,7 @@ body{
     bottom: -80px;
 }
 form{
+    overflow: scroll;
     height: 520px;
     width: 400px;
     /* background: linear-gradient(120deg, #d4fc79 0%, #96e6a1 100%); */
@@ -90,7 +92,7 @@ input{
     color: #3e4146;
 }
 button{
-    margin-top: 50px;
+    margin-top: 10px;
     width: 100%;
     background-color: #54eb93;
     color: #080710;
@@ -101,6 +103,7 @@ button{
     cursor: pointer;
     box-shadow:4em;
     box-shadow: inherit;
+    
 }
 .social{
   margin-top: 30px;
