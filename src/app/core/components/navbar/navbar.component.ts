@@ -37,7 +37,7 @@ export class NavbarComponent {
 
   async OCR() {
     Tesseract.recognize(
-      'assets/MicrosoftTeams-image (1).png',
+      'assets/haha.png',
       'eng',
 
       { logger: m => console.log(m) }
@@ -46,12 +46,14 @@ export class NavbarComponent {
       console.log(text);
 
     });
-
   }
 
+ 
+  
+
   textFormat(str: string): string {
-    return str.replace(/[\s~`!@#$%^&*()_+\-={[}\]|\\:;"'<,>.?/]+/g, '')
-    // return str
+  //  return str.replace(/[\s~`!@#$%^&*()_+\-={[}\]|\\:;"'<,>.?/]+/g, '')
+     return str
   }
 
 

@@ -2,6 +2,8 @@
 
 
 .image{
+  
+  
   transition:
     width 2s,
     height 2s,
@@ -10,6 +12,7 @@
 }
 .image:hover{
   rotate: 360deg;
+  transform: scale(1.2);
 }
 
 .col-lg-4{

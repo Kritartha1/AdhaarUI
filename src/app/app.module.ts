@@ -12,6 +12,7 @@ import { NewNavbarComponent } from './core/components/new-navbar/new-navbar.comp
 import { LoginComponent } from './features/auth/login/login.component';
 import { RegisterComponent } from './features/auth/register/register.component';
 import { OcrComponent } from './features/ocr/ocr.component';
+import * as Tesseract from 'tesseract.js';
 
 
 
@@ -31,7 +32,8 @@ import { OcrComponent } from './features/ocr/ocr.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    
   ],
   providers: [],
   bootstrap: [AppComponent]
