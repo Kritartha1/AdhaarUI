@@ -1,13 +1,14 @@
 form{
-    height: 520px;
+    /* height: 520px; */
+    /* height: 100%; */
     width: 800px ;
     
     /* background: linear-gradient(120deg, #d4fc79 0%, #96e6a1 100%); */
     /* background-color: rgb(148, 211, 153); */
     background-color: rgb(255, 255, 255);
    
-
-    position: absolute;
+    /* position: relative; */
+    position: fixed;
     transform: translate(-50%);
     /* top: 50%; */
     left: 50%;
@@ -16,6 +17,7 @@ form{
     border: 2px solid rgba(255,255,255,0.1);
     box-shadow: 0 0 40px rgba(8,7,16,0.6);
     padding: 50px 35px;
+    overflow: scroll;
     
 }
 form *{

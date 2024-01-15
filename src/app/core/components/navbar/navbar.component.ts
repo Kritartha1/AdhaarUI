@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { from, Observable } from 'rxjs';
-import * as Tesseract from 'tesseract.js';
-import { createWorker } from 'tesseract.js';
+// import * as Tesseract from 'tesseract.js';
+// import { createWorker } from 'tesseract.js';
 
 
 @Component({
@@ -20,7 +20,7 @@ export class NavbarComponent {
    *
    */
   constructor() {
-    this.OCR();
+    // this.OCR();
 
 
   }
@@ -35,18 +35,18 @@ export class NavbarComponent {
     this.toggle = false;
   }
 
-  async OCR() {
-    Tesseract.recognize(
-      'assets/haha.png',
-      'eng',
+  // async OCR() {
+  //   Tesseract.recognize(
+  //     'assets/haha.png',
+  //     'eng',
 
-      { logger: m => console.log(m) }
-    ).then(({ data: { text } }) => {
-      text = this.textFormat(text);
-      console.log(text);
+  //     { logger: m => console.log(m) }
+  //   ).then(({ data: { text } }) => {
+  //     text = this.textFormat(text);
+  //     console.log(text);
 
-    });
-  }
+  //   });
+  // }
 
  
   

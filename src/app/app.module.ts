@@ -13,6 +13,7 @@ import { LoginComponent } from './features/auth/login/login.component';
 import { RegisterComponent } from './features/auth/register/register.component';
 import { OcrComponent } from './features/ocr/ocr.component';
 import * as Tesseract from 'tesseract.js';
+import { ValidateRegistrationComponent } from './features/validate-registration/validate-registration.component';
 
 
 
@@ -26,7 +27,8 @@ import * as Tesseract from 'tesseract.js';
     NewNavbarComponent,
     LoginComponent,
     RegisterComponent,
-    OcrComponent
+    OcrComponent,
+    ValidateRegistrationComponent
 
   ],
   imports: [
