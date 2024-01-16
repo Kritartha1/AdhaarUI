@@ -7,20 +7,20 @@
 
 <body >
    
-    <form class="row " style="max-height: 90%;height: auto;margin: auto;">
+    <form #form="ngForm" (ngSubmit)="onFormSubmit()" class="row " style="max-height: 90%;height: auto;margin: auto;">
         <h3 class="waviy">Hey there!</h3>
 
         <label for="username">Username</label>
-        <input type="text" placeholder="Email" id="username">
+        <input type="text" placeholder="Email" id="username"  [(ngModel)]="model.email">
 
         <label for="password">Password</label>
-        <input type="password" placeholder="Password" id="password">
+        <input type="password" placeholder="Password" id="password"  [(ngModel)]="model.password">
 
         <label for="ConfirmPassword">Confirm Password*</label>
-        <input type="password" placeholder="Re-enter Password" id="Confirmpassword">
+        <input type="password" placeholder="Re-enter Password" id="Confirmpassword"  [(ngModel)]="mod.confirmPassword">
 
         <div class="" >
-            <button>Register</button>
+            <button type="submit">Register</button>
             <button >Login</button>
             <!-- <div class="social d-flex justify-content-center">
               <div class="go"><i class="fab "></i>Login</div>
