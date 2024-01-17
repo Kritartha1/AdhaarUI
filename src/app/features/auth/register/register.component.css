@@ -112,7 +112,7 @@ button{
     box-shadow: inherit;
     
 }
-.social{
+/* .social{
   margin-top: 30px;
   display: flex;
   
@@ -138,7 +138,45 @@ button{
 .social i{
   margin-right: 4px;
   box-shadow: inherit;
+} */
+.social{
+  /* margin-top: 30px; */
+  display: flex;
+  
 }
+.social span{
+  display: block;
+}
+.social div{
+    
+  /* background: red; */
+  width: 150px;
+  border-radius: 3px;
+  padding: 5px 10px 10px 5px;
+  /* background-color: rgba(65, 172, 199, 0.993);
+  color: #f0f1f1; */
+  text-align: center;
+}
+.social p{
+    color: #1845ad;
+    /* box-shadow: inset 0px 0px 5px 0px rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19); */
+}
+.social p:hover{
+  background-color: rgba(255,255,255,0.47);
+  color: #54eba7;
+  cursor: pointer;
+  transform: scale(1.1);
+  
+  
+}
+.social .fb{
+  margin-left: 25px;
+}
+.social i{
+  margin-right: 4px;
+  box-shadow: inherit;
+}
+
 .waviy {
    
   

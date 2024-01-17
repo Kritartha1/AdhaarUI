@@ -21,7 +21,11 @@
 
         <div  >
             <button type="submit">Register</button>
-            <button [routerLink]="['/login']">Login</button>
+            <div class="social d-flex justify-content-center">
+                <div class="go"><i class="fab "></i><span>Already a user?</span> <p [routerLink]="['/login']">Login</p></div>
+                
+              </div>
+            <!-- <button [routerLink]="['/login']">Login</button> -->
             <!-- <div class="social d-flex justify-content-center">
               <div class="go"><i class="fab "></i>Login</div>
               
