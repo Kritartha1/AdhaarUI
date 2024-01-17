@@ -11,17 +11,17 @@
         <h3 class="waviy">Hey there!</h3>
 
         <label for="username">Username</label>
-        <input type="text" placeholder="Email" id="username"  [(ngModel)]="model.email">
+        <input type="text" class="form-control"  placeholder="Email" id="username" name="username" [(ngModel)]="model.username">
 
         <label for="password">Password</label>
-        <input type="password" placeholder="Password" id="password"  [(ngModel)]="model.password">
+        <input type="password" class="form-control" placeholder="Password" id="password" name="password" [(ngModel)]="model.password">
 
-        <label for="ConfirmPassword">Confirm Password*</label>
-        <input type="password" placeholder="Re-enter Password" id="Confirmpassword"  [(ngModel)]="mod.confirmPassword">
+        <label for="confirmPassword">Confirm Password*</label>
+        <input type="password" class="form-control"  placeholder="Re-enter Password" id="confirmpassword" name="confirmPassword"  [(ngModel)]="mod.confirmPassword">
 
-        <div class="" >
+        <div  >
             <button type="submit">Register</button>
-            <button >Login</button>
+            <button [routerLink]="['/login']">Login</button>
             <!-- <div class="social d-flex justify-content-center">
               <div class="go"><i class="fab "></i>Login</div>
               

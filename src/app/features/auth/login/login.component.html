@@ -3,29 +3,31 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
 </head>
 
+<!-- <button class="close-button" [routerLink]="['/']"></button> -->
 <body >
+    
     <!-- <div class="background">
         <div class="shape"></div>
         <div class="shape"></div>
     </div> -->
    
-    <form  style="height: auto;margin: auto; ">
+    <form #form="ngForm" (ngSubmit)="onFormSubmit()" style="height: auto;margin: auto; ">
        
         <h3>Login Here</h3>
 
         <label for="username">Username</label>
-        <input type="text" placeholder="Email" id="username">
+        <input type="text" class="form-control" name="username" placeholder="Email" id="username" [(ngModel)]="model.email">
 
         <label for="password">Password</label>
-        <input type="password" placeholder="Password" id="password">
+        <input type="password" class="form-control" name="password" placeholder="Password" id="password"  [(ngModel)]="model.password">
 
         
         
           
 
-        <button>Log In</button>
+        <button type="submit">Log In</button>
         <div class="social d-flex justify-content-center">
-          <div class="go"><i class="fab "></i>New User? <p>Register</p></div>
+          <div class="go"><i class="fab "></i>New User? <p [routerLink]="['/register']">Register</p></div>
           
         </div>
     </form>

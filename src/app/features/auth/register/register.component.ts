@@ -14,8 +14,8 @@ export class RegisterComponent {
 
   mod:{confirmPassword:string};
   model:SignupRequest;
-  @ViewChild('form')
-  form!: NgForm;
+  // @ViewChild('form')
+  // form!: NgForm;
 
   /**
    *
@@ -26,7 +26,7 @@ export class RegisterComponent {
       confirmPassword:''
     };
     this.model={
-      email: '',
+      username: '',
       password: '',
       roles:["User"]
       
@@ -41,12 +41,20 @@ export class RegisterComponent {
       .subscribe({
         next: (response) => {
 
-          this.router.navigateByUrl('/login');
+          console.log(this.model);
+          console.log(response);
+           this.router.navigateByUrl('/login');
         }
         ,
         error:(err)=>{
+          console.log(this.model);
             alert("Oops!Try again");
-            this.form.resetForm();
+            this.model={
+              username: '',
+              password: '',
+              roles:["User"]
+              
+            };
         }
       });
   }

@@ -29,7 +29,7 @@ export class AuthService {
 
   register(request:SignupRequest):Observable<SignupResponse>{
     return this.http.post<SignupResponse>(`${environment.apiBaseUrl}/api/Auth/Register`, {
-      username: request.email,
+      username: request.username,
       password: request.password,
       roles:request.roles
     });

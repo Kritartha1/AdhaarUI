@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { from, Observable } from 'rxjs';
+import { User } from 'src/app/features/auth/models/user.model';
+import { AuthService } from 'src/app/features/auth/services/auth.service';
 // import * as Tesseract from 'tesseract.js';
 // import { createWorker } from 'tesseract.js';
 
@@ -12,48 +15,31 @@ import { from, Observable } from 'rxjs';
 export class NavbarComponent {
 
 
-  toggle: boolean = false;
 
+  user?: User;
 
-
-  /**
-   *
-   */
-  constructor() {
-    // this.OCR();
-
-
-  }
-
-
-  popUpVisible(): void {
-    this.toggle = true;
-  }
-
-
-  popUpClose(): void {
-    this.toggle = false;
-  }
-
-  // async OCR() {
-  //   Tesseract.recognize(
-  //     'assets/haha.png',
-  //     'eng',
-
-  //     { logger: m => console.log(m) }
-  //   ).then(({ data: { text } }) => {
-  //     text = this.textFormat(text);
-  //     console.log(text);
-
-  //   });
-  // }
-
- 
   
+  constructor(private authService: AuthService, private router: Router) {
+  
+  }
 
-  textFormat(str: string): string {
-  //  return str.replace(/[\s~`!@#$%^&*()_+\-={[}\]|\\:;"'<,>.?/]+/g, '')
-     return str
+
+  ngOnInit(): void {
+    this.authService.user()
+      .subscribe({
+        next: (response) => {
+          this.user = response;
+        }
+      });
+
+
+    this.user = this.authService.getuser();
+  }
+
+  onLogout(): void {
+    this.authService.logout();
+    this.router.navigateByUrl('/');
+
   }
 
 
