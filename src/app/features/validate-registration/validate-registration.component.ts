@@ -13,6 +13,7 @@ export class ValidateRegistrationComponent {
 
   model:ImageRequest;
   id: string | null;
+  isLoading:boolean;
   /**
    *
    */
@@ -32,16 +33,23 @@ export class ValidateRegistrationComponent {
       district:'',
       state:'',
       uid:'',
-      file: new File([], 'placeholder.txt', { type: 'text/plain' })
+      file: {} as File
     };
     this.id="";
+    this.isLoading=false;
 
     
   }
 
+  onFileSelected(event: any): void {
+    this.model.file = event.target.files[0];
+  }
+
   onFormSubmit(): void {
+    this.isLoading = true;
     this.id = localStorage.getItem('user-Id');
     if(this.id){
+      
 
       this.imageService.verify(this.id,this.model)
       .subscribe({
@@ -53,11 +61,15 @@ export class ValidateRegistrationComponent {
         }
         ,
         error:(err)=>{
+          console.log(this.model)
           console.error(err);
         }
       });
 
+    }else{
+      console.log("Please sign in");
     }
+    this.isLoading = false;
     
   }
 

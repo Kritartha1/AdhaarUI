@@ -1,9 +1,9 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment.development';
 import { ImageRequest } from '../models/Image.model';
 import { SignupResponse } from '../auth/models/signup-response';
-import { Observable } from 'rxjs';
+import { Observable, catchError, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -28,7 +28,11 @@ export class ImageService {
     formData.append('uid', request.uid);
     formData.append('file', request.file);
 
-    return this.http.post<SignupResponse>(`${environment.apiBaseUrl}/api/Auth/Create/${id}`, formData);
+    // formData.forEach((val,key)=>console.log("val: ",val,"key: ",key));
+    
+    return this.http.post<SignupResponse>(`${environment.apiBaseUrl}/api/Image/${id}`,formData)
+      
+    
 
     
   }

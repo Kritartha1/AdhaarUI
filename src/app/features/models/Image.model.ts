@@ -8,5 +8,5 @@ export interface ImageRequest {
     district:string;
     state:string;
     uid:string;
-    file:File ;
+    file:File;
 }
