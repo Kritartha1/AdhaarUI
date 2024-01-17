@@ -52,9 +52,7 @@ input{
     
 }
 
-.custom{
-    /* background-color:#000000; */
-}
+
 .cusbtn{
     margin-left: 46%;
     background-color: #54eb93;
@@ -67,6 +65,24 @@ input{
     box-shadow: inset 0px 0px 2px 2px rgb(219 191 191 / 54%), inset 0px 0px 6px 0px rgba(0,0,0,0.4);
     background-image: linear-gradient(45deg, #8ed552, #6f67ebb8);
 }
+
+:host{
+    width: 100%;
+    height: 100vh;
+    position:fixed;
+    left: 0;
+    top: 0;
+    z-index: 30;
+    padding: 50px;
+    /* background: white; */
+    backdrop-filter: blur(5px);
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+
+  
+
+
+
 
 
  

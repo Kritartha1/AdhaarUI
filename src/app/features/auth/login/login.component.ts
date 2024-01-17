@@ -44,7 +44,13 @@ export class LoginComponent {
                 roles: response.roles,
                 id: response.id
               })
+
+              // console.log(response);
               this.router.navigateByUrl('/');
+            }
+            ,
+            error:(err)=>{
+              console.error(err);
             }
           });
       }

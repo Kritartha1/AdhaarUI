@@ -2,18 +2,26 @@
    
     <div class=" custom row" >
         <div class="row ">
-            <form  class="col-md-8 col-lg-6 ">
+            <form #form="ngForm"  (ngSubmit)="onFormSubmit()" class="col-md-8 col-lg-6 ">
                 
        <div class="d-flex justify-content-evenly">
 
         <div class="form-group col col-lg-6">
             <label class="mt-3" for="firstname">First Name</label>
-            <input type="text" placeholder="First Name" id="firsname"  class="form-control ">
+            <input type="text"
+             placeholder="First Name" 
+             id="firstname" 
+             name="firstname"
+             class="form-control"
+             [(ngModel)]="model.firstName"
+              >
         </div>
 
         <div class="form-group col col-lg-6 ">
             <label class="mt-3" for="lastname">Last Name</label>
-            <input type="text" placeholder="Last Name" id="lastname"  class="form-control">
+            <input type="text" placeholder="Last Name" id="lastname"  class="form-control"
+            [(ngModel)]="model.lastName"
+            name="lastname">
         </div>
 
        </div>
@@ -22,17 +30,26 @@
 
         <div class="form-group col-md-4 col-lg-4 ">
             <label class="mt-3" for="address">Address</label>
-            <input type="text" placeholder="City/Village/Town" id="address"  class="form-control">
+            <input type="text" placeholder="City/Village/Town" id="address"  class="form-control"
+            [(ngModel)]="model.address"
+            name="address">
+            >
         </div>
 
         <div class="form-group col-md-4 col-lg-4">
-            <label class="mt-3" for="address">Age</label>
-            <input type="text" placeholder="Age" id="age"  class="form-control">
+            <label class="mt-3" for="age">Age</label>
+            <input type="text" placeholder="Age" id="age"  class="form-control"
+            [(ngModel)]="model.age"
+            name="age">
+            >
         </div>
 
         <div class="form-group col-md-4 col-lg-4">
             <label class="mt-3" for="phn">Phone</label>
-            <input type="text" placeholder="00000 00000" id="phn"  class="form-control">
+            <input type="text" placeholder="00000 00000" id="phn"  class="form-control"
+            [(ngModel)]="model.phone"
+            name="phn">
+            >
         </div>
 
        </div>
@@ -41,12 +58,17 @@
 
         <div class="form-group col col-lg-6">
             <label class="mt-3" for="locality">Locality</label>
-            <input type="text" placeholder="Locality" id="locality"  class="form-control">
+            <input type="text" placeholder="Locality" id="locality"  class="form-control"
+            [(ngModel)]="model.locality"
+            name="locality">
         </div>
 
         <div class="form-group col col-lg-6 ">
             <label class="mt-3" for="district">District</label>
-            <input type="text" placeholder="District" id="district"  class="form-control">
+            <input type="text" placeholder="District" id="district"  class="form-control"
+            [(ngModel)]="model.district"
+            name="district">
+            >
         </div>
 
        </div>
@@ -56,23 +78,32 @@
 
         <div class="form-group col col-lg-4">
             <label class="mt-3" for="state">State</label>
-            <input type="text" placeholder="State" id="state" class="form-control">
+            <input type="text" placeholder="State" id="state" class="form-control"
+            [(ngModel)]="model.state"
+            name="state">
+            >
         </div>
 
         <div class="form-group col col-lg-4">
-            <label class="mt-3" for="adhaarno">UID</label>
-            <input type="text" placeholder="0000 0000 0000 " id="adhaarno" class="form-control">
+            <label class="mt-3" for="uid">UID</label>
+            <input type="text" placeholder="0000 0000 0000 " id="uid" class="form-control"
+            [(ngModel)]="model.uid"
+            name="uid">
+            >
         </div>
 
         <div class="form-group col col-lg-4">
             <label class="mt-3" for="adhaar">Adhaar</label>
-            <input type="file"  id="adhaar" class="form-control">
+            <input type="file"  id="adhaar" class="form-control"
+            [(ngModel)]="model.file"
+            name="adhaar">
+            >
         </div>
         
        </div>
             
             <br>
-            <button class="mt-3 cusbtn btn " >Verify</button>
+            <button type="submit" class="mt-3 cusbtn btn " >Verify</button>
 
 
 
