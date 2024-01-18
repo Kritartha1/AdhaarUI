@@ -41,6 +41,7 @@ export class UserProfileComponent implements OnInit,OnDestroy {
 
   }
 
+  
   ngOnInit(): void {
     this.maxDate = this.getCurrentDate();
     this.id = localStorage.getItem('user-Id');
@@ -69,6 +70,13 @@ export class UserProfileComponent implements OnInit,OnDestroy {
         )
     }
   }
+
+
+  toTop(){
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  
 
   OnFormSubmit(): void {
     // const updateUserRequest: UpdateUser = {
@@ -138,6 +146,8 @@ export class UserProfileComponent implements OnInit,OnDestroy {
     // return `${year}-${month}-${day}`;
     return "haha";
   }
+
+  
 
   ngOnDestroy(): void {
     this.editAddressSubscription?.unsubscribe();

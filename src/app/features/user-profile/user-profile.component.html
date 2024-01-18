@@ -1,4 +1,6 @@
+<div style="height: 34vh;background-image: linear-gradient(rgba(230,174,238,1), transparent);"></div>
 <div class="container rounded bg-white mt-3 mb-5">
+   
     <ng-container *ngIf="user && address " >
     <form #form="ngForm" (ngSubmit)="OnFormSubmit()" >
     <div class="row">
@@ -95,6 +97,17 @@
     </div>
 </form>
 </ng-container>
+
+<hr>
+
+<footer style="margin: 5rem 0;" class="container">
+    <p   (click)="toTop()" class="float-end spanc"><span >Back to top</span></p>
+    <p>&copy; 2024 &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
+  </footer>
+
+
 </div>
+
+
 <!-- </div>
 </div> -->
