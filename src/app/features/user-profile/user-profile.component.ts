@@ -23,6 +23,7 @@ export class UserProfileComponent implements OnInit,OnDestroy {
   editAddressSubscription?: Subscription;
   id: string | null;
   ad_id: string | null;
+  email:string|null;
 
 
   constructor(
@@ -31,12 +32,25 @@ export class UserProfileComponent implements OnInit,OnDestroy {
     private imageService: ImageService) {
     this.id = "";
     this.ad_id = "";
+    this.address={
+      firstName:'',
+      lastName:'',
+      address:'',
+      age:null,
+      phone:'0000000000',
+      locality:'',
+      district:'',
+      state:'',
+      uid:'',
+      file:{} as File
+    }
     // this.address = {
     //   id: "",
     //   locality: "",
     //   city: "",
     //   state: ""
     // };
+    this.email='';
 
 
   }
@@ -45,6 +59,7 @@ export class UserProfileComponent implements OnInit,OnDestroy {
   ngOnInit(): void {
     this.maxDate = this.getCurrentDate();
     this.id = localStorage.getItem('user-Id');
+    this.email=localStorage.getItem('user-email');
     if (this.id) {
       console.log(this.id);
       this.editUserSubscription = this.authService.getUserById(this.id)
@@ -52,6 +67,7 @@ export class UserProfileComponent implements OnInit,OnDestroy {
           {
             next: (response) => {
               this.user = response;
+              console.log(response);
 
               
               this.editAddressSubscription = this.imageService.getImageById(this.id!)

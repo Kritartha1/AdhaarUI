@@ -1,65 +1,100 @@
+
+
+
+
+
+
+
+
 <div style="height: 34vh;background-image: linear-gradient(rgba(230,174,238,1), transparent);"></div>
+
 <div class="container rounded bg-white mt-3 mb-5">
    
     <ng-container *ngIf="user && address " >
-    <form #form="ngForm" (ngSubmit)="OnFormSubmit()" >
+    <form #form="ngForm" (ngSubmit)="OnFormSubmit()" style="box-shadow: 0px 0px 0px 0px rgba(0,0,0), inset 0px 0px 6px 0px rgba(0,0,0,0.4);
+    padding: 38px;
+    " >
     <div class="row">
         <div class="col-md-3 border-right">
             <div class="d-flex flex-column align-items-center text-center p-3 py-5">
-                <img class="rounded-circle mt-5" width="150px" src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg"><span class="font-weight-bold">
+                <img width="170" height="170" src="https://img.icons8.com/bubbles/170/user-male-circle.png" alt="user-male-circle"/>
+               
+                <span class="font-weight-bold" *ngIf="address?.firstName?.length">
                     {{address.firstName}}
+                    <img src="https://img.icons8.com/color-glass/48/verified-account--v1.png">
                 </span>
                 <span class="text-black-50">
-                    {{user.email}}</span><span> 
-
-                    </span>
+                    {{email}}</span>
                 </div>
         </div>
-        <div class="col-md-5 border-right">
+        <div class="col-md-8 border-right">
             <div class="p-1 py-1">
                 <div class="d-flex justify-content-between align-items-center mb-3">
                     <h4 class="text-right">Profile Settings</h4>
                 </div>
                 <div class="row mt-2">
-                    <div class="col-md-12"><label
+                    <div class="col"><label
                          class="labels"
-                          for="name">Name</label>
-                        <!-- <input 
-                        type="text"
-                         id="name"
-                        class="form-control" 
-                        name="name" 
-                        [(ngModel)]="user.name" 
-                        placeholder="Full Name" /> -->
-
+                          for="firstName">First Name</label>
                         <input 
                         type="text"
-                         id="name"
+                         id="firstName"
                         class="form-control" 
-                        name="name" 
+                        name="firstName" 
                         [(ngModel)]="address.firstName" 
-                        placeholder="Full Name" />
-                    
+                        placeholder="first Name" 
+                        disabled
+                        />
                     </div>
+                    <div class="col"><label
+                        class="labels"
+                         for="lastName">Last Name</label>
+                       <input 
+                       type="text"
+                        id="lastName"
+                       class="form-control" 
+                       name="lastName" 
+                       [(ngModel)]="address.lastName" 
+                       placeholder="last Name" 
+                       disabled
+                       />
+                   </div>
+
+                   <div class="col"><label
+                    class="labels"
+                     for="lastName">Age</label>
+                   <input 
+                   type="text"
+                    id="lastName"
+                   class="form-control" 
+                   name="lastName" 
+                   [(ngModel)]="address.lastName" 
+                   placeholder="last Name"
+                   disabled
+                   />
+               </div>
                     
                 </div>
 
                 <div class="row mt-3">
                    
                       
-                      <div class="col-md-12">
+                      <div class="col">
                         <label class="labels"
                         for="age"
-                        >Age</label>
+                        >Address</label>
                         <input 
                         type="text"
                         id="age"
                         name="age"
                          class="form-control" 
-                         [(ngModel)]="address.age" >
+                         [(ngModel)]="address.age"
+                         disabled
+                         
+                         >
                       </div>
                 
-                    <div class="col-md-12"><label class="labels"
+                    <div class="col"><label class="labels"
                         for="address">
                         Locality</label>
                         <input type="text"
@@ -67,17 +102,34 @@
                          class="form-control"
                           placeholder="enter address"
                           name="address"
-                           [(ngModel)]="address.address"></div>
-                    <div class="col-md-12"><label class="labels"
-                        for="locality">
-                        City</label><input type="text" 
-                        id="locality"
-                        name="locality"
-                        class="form-control"
-                         placeholder="enter locality"
-                         [(ngModel)]="address.locality"
-                          ></div>
-                    <div class="col-md-12">
+                           [(ngModel)]="address.address"
+                           disabled
+                           ></div>
+
+                    
+                   
+
+                </div>
+
+                <div class="row mt-3">
+
+                    <div class="col">
+                        <label class="labels" for="state">
+                            District</label>
+                            <input type="text" 
+                            name="state"
+                            id="state"
+                            class="form-control"
+                             placeholder="enter state" 
+                             [(ngModel)]="address.state"
+                             disabled
+                             >
+                    </div>
+                   
+                      
+                   
+
+                    <div class="col">
                         <label class="labels" for="state">
                             State</label>
                             <input type="text" 
@@ -85,10 +137,18 @@
                             id="state"
                             class="form-control"
                              placeholder="enter state" 
-                             [(ngModel)]="address.state"></div>
+                             [(ngModel)]="address.state"
+                             disabled
+                             >
                     </div>
+
+                    
+                    
+                </div>
+                    
                 
-                <div class="mt-5 text-center"><button class="btn btn-primary profile-button" type="submit">Save Profile</button></div>
+                <div class="mt-5 text-center"><button class="btn btn-primary profile-button">Verify</button>
+                </div>
             </div>
         </div>
 
@@ -100,6 +160,7 @@
 
 <hr>
 
+
 <footer style="margin: 5rem 0;" class="container">
     <p   (click)="toTop()" class="float-end spanc"><span >Back to top</span></p>
     <p>&copy; 2024 &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
@@ -108,6 +169,11 @@
 
 </div>
 
-
+<div style="background-image: linear-gradient(transparent,rgba(230,174,238,1));">
+    
+</div>
 <!-- </div>
 </div> -->
+
+
+
