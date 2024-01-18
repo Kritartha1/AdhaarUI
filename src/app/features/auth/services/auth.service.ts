@@ -35,6 +35,11 @@ export class AuthService {
     });
   }
 
+  getUserById(id: string): Observable<User> {
+    return this.http.get<User>(`${environment.apiBaseUrl}/api/Auth/${id}`)
+  }
+
+  
   setuser(user: User): void {
     this.$user.next(user);
     localStorage.setItem('user-email', user.email);

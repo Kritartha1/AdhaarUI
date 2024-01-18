@@ -44,7 +44,7 @@
             
           </ng-container>
           <ng-template #showLogout>
-            <li><a class="dropdown-item" [routerLink]="['/']" >Email</a></li>
+            <li><a class="dropdown-item" [routerLink]="['/user']" >{{user!.email}}</a></li>
             <li><a class="dropdown-item" (click)="onLogout()" [routerLink]="['/']">Log Out</a></li>
           </ng-template>
           
