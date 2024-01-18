@@ -17,6 +17,7 @@ import * as Tesseract from 'tesseract.js';
 import { ValidateRegistrationComponent } from './features/validate-registration/validate-registration.component';
 import { HttpClientModule } from '@angular/common/http';
 import { UserProfileComponent } from './features/user-profile/user-profile.component';
+import { CrossButtonComponent } from './features/cross-button/cross-button.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { UserProfileComponent } from './features/user-profile/user-profile.compo
     RegisterComponent,
     OcrComponent,
     ValidateRegistrationComponent,
-    UserProfileComponent
+    UserProfileComponent,
+    CrossButtonComponent
 
   ],
   imports: [

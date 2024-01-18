@@ -1,0 +1,20 @@
+.p{
+    top: -13px;
+    display: flex;
+    /* flex-direction: row-reverse; */
+    justify-content: space-between;
+    position: absolute;
+    right: -8px;
+    background: #d34f4f;
+    /* margin: 4px; */
+    padding: 2px;
+    border-radius: 19px;
+    width: 26px;
+    /* margin: auto; */
+    justify-content: center;
+}
+
+.p:hover{
+    cursor: pointer;
+    transform: scale(1.1);
+}
