@@ -47,4 +47,8 @@ export class ImageService {
   //     })
   //   );
   // }
+
+  getImageById(id:string):Observable<ImageRequest>{
+    return this.http.get<ImageRequest>(`${environment.apiBaseUrl}/api/Image/${id}`)
+  }
 }

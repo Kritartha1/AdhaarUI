@@ -16,6 +16,7 @@ import { OcrComponent } from './features/ocr/ocr.component';
 import * as Tesseract from 'tesseract.js';
 import { ValidateRegistrationComponent } from './features/validate-registration/validate-registration.component';
 import { HttpClientModule } from '@angular/common/http';
+import { UserProfileComponent } from './features/user-profile/user-profile.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { HttpClientModule } from '@angular/common/http';
     LoginComponent,
     RegisterComponent,
     OcrComponent,
-    ValidateRegistrationComponent
+    ValidateRegistrationComponent,
+    UserProfileComponent
 
   ],
   imports: [
