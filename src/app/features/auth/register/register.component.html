@@ -6,8 +6,27 @@
 </head>
 
 <body >
+
+    <p style="
+    top: 3px;
+    display: flex;
+    justify-content: space-between;
+    position: absolute;
+    right: 3px;
+    background: #f5f3f3;
+    columns: red;
+    padding: 2px;
+    border-radius: 19px;
+    width: 26px;
+    justify-content: center;
+    cursor: pointer;
+"
+[routerLink]="['/']" >x</p>
    
-    <form #form="ngForm" (ngSubmit)="onFormSubmit()" class="row " style="max-height: 90%;height: auto;margin: auto;">
+    <form #form="ngForm" (ngSubmit)="onFormSubmit()" class="container row " style="max-height: 90%;height: auto;margin: auto;">
+
+        
+       
         <h3 class="waviy">Hey there!</h3>
 
         <label for="username">Username</label>

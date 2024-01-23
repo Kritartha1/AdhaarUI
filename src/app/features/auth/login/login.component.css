@@ -41,6 +41,7 @@ body{
     bottom: -80px;
 }
 form{
+    
     height: 520px;
     width: 400px;
     background-color: white;
@@ -52,7 +53,20 @@ form{
     backdrop-filter: blur(10px);
     box-shadow: inset 0 0px 6px rgba(0,0,0), 0 4px 6px rgba(0,0,0,0.45);
     padding: 50px 35px;
+    overflow: scroll;
+    z-index: 10;
+    
 }
+
+
+
+
+
+::-webkit-scrollbar {
+    width: 0;  /* Remove scrollbar space */
+    background: transparent;  /* Optional: just make scrollbar invisible */
+}
+
 form *{
     font-family: 'Poppins',sans-serif;
     color: #000000;
@@ -166,3 +180,4 @@ button:hover{
   .close-button::before {
     content: '\00D7'; /* Unicode character for 'times' (X) */
   }
+
