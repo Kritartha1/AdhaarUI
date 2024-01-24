@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { SignupRequest } from '../models/signup-request';
 import { AuthService } from '../services/auth.service';
 import { CookieService } from 'ngx-cookie-service';
@@ -16,6 +16,8 @@ export class RegisterComponent {
   model:SignupRequest;
   // @ViewChild('form')
   // form!: NgForm;
+  password: string = '';
+  passwordError: string = '';
 
   /**
    *
@@ -32,11 +34,24 @@ export class RegisterComponent {
       
     };
   }
+ 
+
+
+
+  validatePassword() {
+    const minLength = 8;
+    const maxLength = 16;
+
+    if (this.model.password.length < minLength || this.model.password.length > maxLength) {
+      this.passwordError = `Password must be between ${minLength} and ${maxLength} characters.`;
+    } else {
+      this.passwordError = '';
+      // Additional validation logic can be added here
+    }
+  }
 
   onFormSubmit(): void {
 
-    
-    
     this.authService.register(this.model)
       .subscribe({
         next: (response) => {

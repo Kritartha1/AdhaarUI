@@ -33,10 +33,22 @@
         <input type="text" class="form-control"  placeholder="Email" id="username" name="username" [(ngModel)]="model.username">
 
         <label for="password">Password</label>
-        <input type="password" class="form-control" placeholder="Password" id="password" name="password" [(ngModel)]="model.password">
+        <input type="password"
+         class="form-control"
+          placeholder="Password"
+           id="password"
+            name="password"
+             [(ngModel)]="model.password" 
+             (ngModelChange)="validatePassword()"
+             min="8"
+             maxlength="16"
+             >
+        <mdb-error *ngIf="password.invalid && (password.dirty || password.touched)">Input invalid</mdb-error>
+        <p *ngIf="passwordError">{{ passwordError }}</p>
 
         <label for="confirmPassword">Confirm Password*</label>
         <input type="password" class="form-control"  placeholder="Re-enter Password" id="confirmpassword" name="confirmPassword"  [(ngModel)]="mod.confirmPassword">
+        
 
         <div  >
             <button type="submit">Register</button>
