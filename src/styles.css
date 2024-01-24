@@ -37,3 +37,17 @@ html, body { height: 100%; }
     background: transparent;  
 } */
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+/* Add your other styles for .form-control here */
+.form-control.field-error {
+    border: 1px solid red; /* Add your error styles here */
+    /* Add any other error styles as needed */
+  }
+  
+  /* Additional styling for the error message */
+  .form-control.field-error + p {
+    color: red;
+    font-size: 12px;
+    margin-top: 4px;
+    /* Add any other error message styles as needed */
+  }

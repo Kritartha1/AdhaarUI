@@ -4,6 +4,7 @@ import { AuthService } from '../services/auth.service';
 import { CookieService } from 'ngx-cookie-service';
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-register',
@@ -12,12 +13,15 @@ import { NgForm } from '@angular/forms';
 })
 export class RegisterComponent {
 
+  @ViewChild('form', { static: true }) form!: NgForm; 
+
   mod:{confirmPassword:string};
   model:SignupRequest;
   // @ViewChild('form')
   // form!: NgForm;
   password: string = '';
   passwordError: string = '';
+  fieldValidation: { [key: string]: boolean } = {};
 
   /**
    *
@@ -33,6 +37,7 @@ export class RegisterComponent {
       roles:["User"]
       
     };
+    
   }
  
 
@@ -50,7 +55,40 @@ export class RegisterComponent {
     }
   }
 
+  onUsernameChange() {
+    
+    this.fieldValidation['username'] = !this.model.username.trim();
+  }
+
+  onPasswordChange() {
+    
+    this.validatePassword();
+    this.fieldValidation['password'] = !this.model.password.trim();
+  }
+
+  onConfirmPasswordChange() {
+    
+    this.fieldValidation['confirmPassword'] = !this.mod.confirmPassword.trim();
+  }
+
   onFormSubmit(): void {
+    this.fieldValidation = {};
+
+    this.fieldValidation['username'] = !this.model.username.trim() ;
+    this.fieldValidation['password'] = !this.model.password.trim() ;
+    this.fieldValidation['confirmPassword'] = !this.mod.confirmPassword.trim();
+    
+
+
+    // Check additional validations (e.g., password length)
+    this.validatePassword();
+
+    // Check if any field is blank or has validation errors
+    if (Object.values(this.fieldValidation).some(value => value) || this.form.invalid) {
+      console.log("Please fill all the required fields");
+      return;
+    }
+
 
     this.authService.register(this.model)
       .subscribe({

@@ -30,37 +30,55 @@
         <h3 class="waviy">Hey there!</h3>
 
         <label for="username">Username</label>
-        <input type="text" class="form-control"  placeholder="Email" id="username" name="username" [(ngModel)]="model.username">
+        <input type="text" required class="form-control" 
+         placeholder="Email" id="username" name="username" 
+         (ngModelChange)="onUsernameChange()"
+         [(ngModel)]="model.username"
+         [ngClass]="{'field-error': fieldValidation['username']}"
+         >
+        <p *ngIf="fieldValidation['username']">Please fill the username field.</p>
 
         <label for="password">Password</label>
-        <input type="password"
-         class="form-control"
+        <input type="password" 
+         class="form-control "
           placeholder="Password"
            id="password"
             name="password"
              [(ngModel)]="model.password" 
-             (ngModelChange)="validatePassword()"
+             (ngModelChange)="onPasswordChange()"
+            
+             [ngClass]="{'field-error': fieldValidation['password']}"
              min="8"
              maxlength="16"
+             required
              >
-        <mdb-error *ngIf="password.invalid && (password.dirty || password.touched)">Input invalid</mdb-error>
-        <p *ngIf="passwordError">{{ passwordError }}</p>
+            
+        <p *ngIf="fieldValidation['password']" >{{ passwordError }}</p>
 
-        <label for="confirmPassword">Confirm Password*</label>
-        <input type="password" class="form-control"  placeholder="Re-enter Password" id="confirmpassword" name="confirmPassword"  [(ngModel)]="mod.confirmPassword">
+      
+
+        
         
 
+        <label for="confirmPassword">Confirm Password*</label>
+        <input type="password" class="form-control" 
+         placeholder="Re-enter Password" id="confirmpassword" name="confirmPassword" 
+         required  
+         
+         [(ngModel)]="mod.confirmPassword"
+         [ngClass]="{'field-error': fieldValidation['confirmPassword']}"
+         (ngModelChange)="onConfirmPasswordChange()"
+         >
+        <p *ngIf="fieldValidation['confirmPassword']">Please fill the confirm password field.</p>
+
+
         <div  >
-            <button type="submit">Register</button>
+            <button type="submit" >Register</button>
             <div class="social d-flex justify-content-center">
                 <div class="go"><i class="fab "></i><span>Already a user?</span> <p [routerLink]="['/login']">Login</p></div>
                 
               </div>
-            <!-- <button [routerLink]="['/login']">Login</button> -->
-            <!-- <div class="social d-flex justify-content-center">
-              <div class="go"><i class="fab "></i>Login</div>
-              
-            </div> -->
+            
         </div>
        
     </form>
