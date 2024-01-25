@@ -18,6 +18,8 @@ import { ValidateRegistrationComponent } from './features/validate-registration/
 import { HttpClientModule } from '@angular/common/http';
 import { UserProfileComponent } from './features/user-profile/user-profile.component';
 import { CrossButtonComponent } from './features/cross-button/cross-button.component';
+import { PasswordStrengthComponent } from './features/password-strength/password-strength.component';
+import { AppNumbersOnlyDirective } from './features/app-numbers-only.directive';
 
 @NgModule({
   declarations: [
@@ -32,7 +34,9 @@ import { CrossButtonComponent } from './features/cross-button/cross-button.compo
     OcrComponent,
     ValidateRegistrationComponent,
     UserProfileComponent,
-    CrossButtonComponent
+    CrossButtonComponent,
+    PasswordStrengthComponent,
+    AppNumbersOnlyDirective
 
   ],
   imports: [
