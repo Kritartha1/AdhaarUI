@@ -54,3 +54,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     padding: 22px !important;
     display: flex !important;;
 }
+.alert,.alert-success{
+    padding: 12px;
+  
+  }

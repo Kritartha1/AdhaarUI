@@ -1,8 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { Route, Router } from '@angular/router';
 import { LoginRequest } from '../models/login-request';
 import { AuthService } from '../services/auth.service';
 import { CookieService } from 'ngx-cookie-service';
+import { NgForm } from '@angular/forms';
+import { retry } from 'rxjs';
 
 
 
@@ -14,7 +16,12 @@ import { CookieService } from 'ngx-cookie-service';
 })
 export class LoginComponent {
 
+  @ViewChild('form', { static: true }) form!: NgForm; 
+
     model: LoginRequest;
+    showEmailErr:boolean=false;
+    showPassErr:boolean=false;
+    login_success:string='Logged in successfully!';
     /**
      *
      */
@@ -27,6 +34,23 @@ export class LoginComponent {
       }
 
       onFormSubmit(): void {
+
+        if(this.model.email===''&&this.model.password===''){
+          alert("Please fill all the details");
+          return;
+        }else if (this.model.email==='') {
+          alert("Email can't be empty");
+          return;
+        } else if (this.model.password==='') {
+          alert("Password can't be empty");
+          return;
+        }
+
+        // if(this.form.invalid){
+        //   alert("Please fill all the fields");
+        //   return;
+        // }
+
         this.authService.login(this.model)
           .subscribe({
             next: (response) => {

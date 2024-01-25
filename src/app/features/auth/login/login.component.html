@@ -32,15 +32,40 @@
        
         <h3>Login Here</h3>
 
-        <label for="username">Username</label>
-        <input type="text" class="form-control" name="username" placeholder="Email" id="username" [(ngModel)]="model.email">
+        <label for="username">Username<span style="color: red;">*</span></label>
+        <input 
+        type="text" 
+        class="form-control" 
+        name="username" 
+        placeholder="Email" 
+        id="username" 
+        [(ngModel)]="model.email"
+        required
+        (focus)="showEmailErr = true" 
+        (blur)="showEmailErr = false" 
+        >
 
-        <label for="password">Password</label>
-        <input type="password" class="form-control" name="password" placeholder="Password" id="password"  [(ngModel)]="model.password">
+        <div  *ngIf="showEmailErr && form.controls['username']!.invalid && (form.controls['username']!.dirty || form.controls['username']!.touched)">
+            <div class="field-err" *ngIf="form.controls['username']!.errors?.required">*Email is required.</div>
+        </div>
 
-        
-        
-          
+        <label for="password">Password<span style="color: red;">*</span></label>
+        <input 
+        type="password" 
+        class="form-control" 
+        name="password" 
+        placeholder="Password" 
+        id="password"  
+        [(ngModel)]="model.password"
+        (focus)="showPassErr = true" 
+        (blur)="showPassErr = false"
+        required
+        >
+
+        <div *ngIf="showPassErr && form.controls['password']!.invalid && (form.controls['password']!.dirty || form.controls['password']!.touched)">
+            <div  class="field-err " *ngIf="form.controls['password']!.errors?.required">*Password is required.</div>
+            <!-- errbox -->
+        </div>
 
         <button type="submit">Log In</button>
         <div class="social d-flex justify-content-center">
@@ -49,4 +74,6 @@
         </div>
     </form>
 </body>
+
+<app-success-popup [message]="login_success"></app-success-popup>
 

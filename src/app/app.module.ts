@@ -20,6 +20,8 @@ import { UserProfileComponent } from './features/user-profile/user-profile.compo
 import { CrossButtonComponent } from './features/cross-button/cross-button.component';
 import { PasswordStrengthComponent } from './features/password-strength/password-strength.component';
 import { AppNumbersOnlyDirective } from './features/app-numbers-only.directive';
+import { SuccessPopupComponent } from './features/popup/success-popup/success-popup.component';
+import { FailurePopupComponent } from './features/popup/failure-popup/failure-popup.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +38,9 @@ import { AppNumbersOnlyDirective } from './features/app-numbers-only.directive';
     UserProfileComponent,
     CrossButtonComponent,
     PasswordStrengthComponent,
-    AppNumbersOnlyDirective
+    AppNumbersOnlyDirective,
+    SuccessPopupComponent,
+    FailurePopupComponent
 
   ],
   imports: [
