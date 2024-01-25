@@ -69,15 +69,26 @@
                 'valid': !minlengthError && !uppercaseError && !lowercaseError && !digitError && !specialCharError ,
                 'invalid': (minlengthError || uppercaseError || lowercaseError || digitError || specialCharError)
               }"
-             
              (ngModelChange)="validatePassword()"
+             (focus)="showPasswordStrength = true" 
+             (blur)="showPasswordStrength = false" 
              >
+
+        <app-password-strength
+       
+         *ngIf="showPasswordStrength"
+         [passwordToCheck]="model.password" 
+         (passwordStrength)="onPasswordStrengthChanged($event)"
+         >
+        </app-password-strength>
+
+
              <div *ngIf="form.controls['password']!.invalid && (form.controls['password']!.dirty || form.controls['password']!.touched)">
                 <div  class="field-err " *ngIf="form.controls['password']!.errors?.required">*Password is required.</div>
                 <!-- errbox -->
               </div>
               <!-- [ngClass]="{errbox: (minlengthError || uppercaseError || lowercaseError || digitError || specialCharError)}" -->
-              <div >
+              <div *ngIf="showPasswordStrength" >
                 <div class="field-err" *ngIf="minlengthError">*Password must be at least 8 characters long.</div>
                 <div class="field-err" *ngIf="uppercaseError">*Password must contain at least one uppercase letter.</div>
                 <div class="field-err" *ngIf="lowercaseError">*Password must contain at least one lowercase letter.</div>

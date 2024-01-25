@@ -234,7 +234,7 @@ button{
     border-color: red;
   }
   input:focus:invalid {
-    background: url("https://assets.digitalocean.com/labs/icons/exclamation-triangle-fill.svg") no-repeat 95% 50% lightsalmon;
+    /* background: url("https://assets.digitalocean.com/labs/icons/exclamation-triangle-fill.svg") no-repeat 95% 50% lightsalmon; */
     background-size: 25px;
   }
   /* input:required:focus:valid {
@@ -242,11 +242,11 @@ button{
     background-size: 25px;
   } */
   .invalid:focus{
-    background: url("https://assets.digitalocean.com/labs/icons/exclamation-triangle-fill.svg") no-repeat 95% 50% lightsalmon;
+    /* background: url("https://assets.digitalocean.com/labs/icons/exclamation-triangle-fill.svg") no-repeat 95% 50% lightsalmon; */
     background-size: 25px;
   }
   .valid:focus{
-    background: url("https://assets.digitalocean.com/labs/icons/hand-thumbs-up.svg") no-repeat 95% 50% lightgreen;
+    /* background: url("https://assets.digitalocean.com/labs/icons/hand-thumbs-up.svg") no-repeat 95% 50% lightgreen; */
     background-size: 25px;
   }
 

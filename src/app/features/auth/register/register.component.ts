@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
+
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -32,13 +33,19 @@ export class RegisterComponent {
   digitError:boolean = false;
   specialCharError:boolean = false;
   minlengthError: boolean = false;
+  strongPassword:boolean = false;
+  showPasswordStrength:boolean=false;
 
  
 
   /**
    *
    */
-  constructor(private authService: AuthService, private cookieService: CookieService, private router: Router,private fb: FormBuilder) {
+  constructor(private authService: AuthService,
+     private cookieService: CookieService,
+      private router: Router,
+      private fb: FormBuilder,
+      ) {
     
     this.mod = {
       confirmPassword:''
@@ -81,8 +88,17 @@ export class RegisterComponent {
     this.onConfirmPasswordInput();
   }
 
+  onPasswordStrengthChanged(event: boolean) {
+    this.strongPassword = event;
+  }
+
+ 
+
  
   onFormSubmit(): void {
+   
+    this.router.navigateByUrl('/');
+   
 
     if(this.model.password===''&&this.model.username===''&&this.mod.confirmPassword==='') {
       alert("Form can't be empty");

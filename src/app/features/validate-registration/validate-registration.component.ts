@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { ImageRequest } from '../models/Image.model';
 import { ImageService } from '../services/image.service';
 import { CookieService } from 'ngx-cookie-service';
 import { Router } from '@angular/router';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-validate-registration',
@@ -11,9 +12,11 @@ import { Router } from '@angular/router';
 })
 export class ValidateRegistrationComponent {
 
+  @ViewChild('form', { static: true }) form!: NgForm; 
   model:ImageRequest;
   id: string | null;
   isLoading:boolean;
+  formattedUID:string='';
   /**
    *
    */
@@ -41,16 +44,52 @@ export class ValidateRegistrationComponent {
     
   }
 
+  checkValid():void{
+    console.log(this.form);
+  }
+  checkAge(): void {
+    
+    if (this.model.age && this.model.age > 120) {
+      this.model.age = null; // Set age to 100 if it's greater than 100
+    }
+  
+  }
+
+  showUID():void{
+    if(this.model.uid.length===12){
+      this.model.uid = this.model.uid.replace(/(.{4})/g, '$1 ').trim();
+    }
+  
+    this.checkValid();
+    
+  }
+
+  isValidAadhaar(aadhaar: string): boolean {
+    const aadhaarRegex = /^[0-9]{4}\s?[0-9]{4}\s?[0-9]{4}$/;
+    return aadhaarRegex.test(aadhaar);
+  }
+   
+  
+
+  // checkAge():void{
+  //   if (this.model.age && this.model.age > 100) {
+  //     const newAge:string = this.model.age.toString().slice(0, -1);
+  //     this.model.age = newAge === '' ? null : Number(newAge);
+  //   }
+  // }
+
   onFileSelected(event: any): void {
     this.model.file = event.target.files[0];
   }
 
   onFormSubmit(): void {
+
     this.isLoading = true;
     this.id = localStorage.getItem('user-Id');
+    this.model.uid = this.model.uid.replace(/ /g, '');
+
     if(this.id){
       
-
       this.imageService.verify(this.id,this.model)
       .subscribe({
         next: (response) => {
@@ -67,6 +106,7 @@ export class ValidateRegistrationComponent {
       });
 
     }else{
+      console.log(this.model)
       console.log("Please sign in");
     }
     this.isLoading = false;
