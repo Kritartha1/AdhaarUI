@@ -29,47 +29,80 @@
        
         <h3 class="waviy">Hey there!</h3>
 
-        <label for="username">Username</label>
-        <input type="text" required class="form-control" 
-         placeholder="Email" id="username" name="username" 
-         (ngModelChange)="onUsernameChange()"
-         [(ngModel)]="model.username"
-         [ngClass]="{'field-error': fieldValidation['username']}"
-         >
-        <p *ngIf="fieldValidation['username']">Please fill the username field.</p>
+        <label for="username">Email<span style="color: red;">*</span></label>
 
-        <label for="password">Password</label>
+        <input 
+
+         type="email" 
+         class="form-control" 
+         placeholder="Email" id="username" name="username" 
+         [(ngModel)]="model.username"
+         required
+         email
+         (ngModelChange)="validateEmail()"
+         [ngClass]="{
+                
+            'valid': !invalidEmail ,
+            'invalid': invalidEmail
+          }"
+
+         
+         >
+         <!-- class="errbox" -->
+         <div  *ngIf="form.controls['username']!.invalid && (form.controls['username']!.dirty || form.controls['username']!.touched)">
+            <div class="field-err" *ngIf="form.controls['username']!.errors?.required">*Email is required.</div>
+            <div class="field-err" *ngIf=" !(form.controls['username']!.errors?.required) && invalidEmail  ">*Invalid email format.</div>
+        </div>
+
+
+        <label for="password">Password<span style="color: red;">*</span></label>
+
         <input type="password" 
          class="form-control "
-          placeholder="Password"
-           id="password"
-            name="password"
-             [(ngModel)]="model.password" 
-             (ngModelChange)="onPasswordChange()"
-            
-             [ngClass]="{'field-error': fieldValidation['password']}"
-             min="8"
-             maxlength="16"
+             placeholder="Password"
+             id="password"
+             name="password"
+             [(ngModel)]="model.password"
              required
+             [ngClass]="{
+                
+                'valid': !minlengthError && !uppercaseError && !lowercaseError && !digitError && !specialCharError ,
+                'invalid': (minlengthError || uppercaseError || lowercaseError || digitError || specialCharError)
+              }"
+             
+             (ngModelChange)="validatePassword()"
              >
-            
-        <p *ngIf="fieldValidation['password']" >{{ passwordError }}</p>
+             <div *ngIf="form.controls['password']!.invalid && (form.controls['password']!.dirty || form.controls['password']!.touched)">
+                <div  class="field-err " *ngIf="form.controls['password']!.errors?.required">*Password is required.</div>
+                <!-- errbox -->
+              </div>
+              <!-- [ngClass]="{errbox: (minlengthError || uppercaseError || lowercaseError || digitError || specialCharError)}" -->
+              <div >
+                <div class="field-err" *ngIf="minlengthError">*Password must be at least 8 characters long.</div>
+                <div class="field-err" *ngIf="uppercaseError">*Password must contain at least one uppercase letter.</div>
+                <div class="field-err" *ngIf="lowercaseError">*Password must contain at least one lowercase letter.</div>
+                <div class="field-err" *ngIf="digitError">*Password must contain at least one digit.</div>
+                <div class="field-err" *ngIf="specialCharError">*Password must contain at least one special character (#?!@$%^&*-).</div>
+              </div>
+              
 
       
 
-        
-        
+        <label for="confirmPassword">Confirm Password<span style="color: red;">*</span></label>
 
-        <label for="confirmPassword">Confirm Password*</label>
         <input type="password" class="form-control" 
          placeholder="Re-enter Password" id="confirmpassword" name="confirmPassword" 
          required  
-         
+         (input)="onConfirmPasswordInput()"
          [(ngModel)]="mod.confirmPassword"
-         [ngClass]="{'field-error': fieldValidation['confirmPassword']}"
-         (ngModelChange)="onConfirmPasswordChange()"
+         [ngClass]="{
+                
+            'valid': fieldValidation['confirmPassword'] ,
+            'invalid': !fieldValidation['confirmPassword']
+          }"
          >
-        <p *ngIf="fieldValidation['confirmPassword']">Please fill the confirm password field.</p>
+         <div class="field-err" *ngIf="!fieldValidation['confirmPassword']">Passwords do not match.</div>
+
 
 
         <div  >
@@ -82,5 +115,19 @@
         </div>
        
     </form>
+
+    
 </body>
 
+<div class="container  modal-popup" style="display: flex;
+bottom: 89%;
+right: 2%;position: relative;">
+    <div class="alert alert-success" role="alert">
+        Log In Successful!
+      </div>
+
+</div>
+
+
+
+ 
