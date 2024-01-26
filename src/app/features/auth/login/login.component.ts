@@ -9,6 +9,7 @@ import { NgToastService } from 'ng-angular-popup';
 
 
 
+
 @Component({
     selector: 'app-login',
     templateUrl: './login.component.html',
@@ -22,6 +23,7 @@ export class LoginComponent {
     showEmailErr:boolean=false;
     showPassErr:boolean=false;
     login_success:string='Logged in successfully!';
+    passwordInputType: string = 'password';
     /**
      *
      */
@@ -31,7 +33,16 @@ export class LoginComponent {
           email: '',
           password: ''
         };
+
+       
       }
+
+      togglePasswordVisibility():void {
+        this.passwordInputType = (this.passwordInputType === 'password') ? 'text' : 'password';
+      }
+
+
+    
 
       onFormSubmit(): void {
 

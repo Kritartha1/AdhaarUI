@@ -37,17 +37,44 @@
         </div>
 
         <label for="password">Password<span style="color: red;">*</span></label>
-        <input 
-        type="password" 
-        class="form-control" 
-        name="password" 
-        placeholder="Password" 
-        id="password"  
-        [(ngModel)]="model.password"
-        (focus)="showPassErr = true" 
-        (blur)="showPassErr = false"
-        required
-        >
+
+        <div class="d-flex justify-content-evenly">
+            <input 
+            [type]="passwordInputType"
+           
+            class="form-control" 
+            name="password" 
+            placeholder="Password" 
+            id="password"  
+            [(ngModel)]="model.password"
+            (focus)="showPassErr = true" 
+            (blur)="showPassErr = false"
+            required
+            >
+            <img
+            *ngIf="passwordInputType === 'password'; else temp"
+            style="position: absolute;
+            transform: translateY(100%);
+            right: 47px;"
+            
+            (click)="togglePasswordVisibility()" width="20" height="20" src="https://img.icons8.com/ios-glyphs/20/visible--v1.png" alt="visible--v1"/>
+
+            <ng-template #temp>
+                <img style="position: absolute;
+                    transform: translateY(100%);
+                    right: 47px;"
+                    (click)="togglePasswordVisibility()" 
+                    width="20" 
+                    height="20"  
+                    src="https://img.icons8.com/windows/20/invisible.png" 
+                    alt="invisible"/>
+            </ng-template>
+            
+           
+           
+        </div>
+       
+        
 
         <div *ngIf="showPassErr && form.controls['password']!.invalid && (form.controls['password']!.dirty || form.controls['password']!.touched)">
             <div  class="field-err " *ngIf="form.controls['password']!.errors?.required">*Password is required.</div>
