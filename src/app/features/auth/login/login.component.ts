@@ -24,6 +24,7 @@ export class LoginComponent {
     showPassErr:boolean=false;
     login_success:string='Logged in successfully!';
     passwordInputType: string = 'password';
+    clicked:boolean=false;
     /**
      *
      */
@@ -45,15 +46,19 @@ export class LoginComponent {
     
 
       onFormSubmit(): void {
+        this.clicked=true;
 
         if(this.model.email===''&&this.model.password===''){
+          this.clicked = false;
           this.toast.warning({detail:"ERROR",summary:'Please fill all the details!',duration:2000,position:'topCenter'});
           return;
         }else if (this.model.email==='') {
+          this.clicked = false;
           this.toast.warning({detail:"ERROR",summary:'Email can not be empty!',duration:2000,position:'topCenter'});
           
           return;
         } else if (this.model.password==='') {
+          this.clicked = false;
           this.toast.warning({detail:"ERROR",summary:'Password can not be empty',duration:2000,position:'topCenter'});
           
           return;
@@ -85,14 +90,17 @@ export class LoginComponent {
               this.toast.success({detail:"SUCCESS",summary:'Logged in successfully!',duration:3000, position:'topCenter'});
 
               // console.log(response);
+              this.clicked=false;
               this.router.navigateByUrl('/');
             }
             ,
             error:(err)=>{
+              this.clicked=false;
               this.toast.error({detail:"Log in failed",summary:'Oops!Please try again',duration:2000,position:'topCenter'});
               //console.error(err);
             }
           });
+          
       }
     
     

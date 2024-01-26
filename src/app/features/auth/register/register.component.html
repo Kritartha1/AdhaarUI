@@ -103,7 +103,11 @@
 
 
         <div  >
-            <button type="submit" >Register</button>
+          <div class="d-flex justify-content-center">
+            <button type="submit" [disabled]="clicked">Register</button>
+            <span *ngIf="clicked" class="loader" style="z-index: 50;transform: translateY(47%);"></span>
+          </div>
+            
             <div class="social d-flex justify-content-center">
                 <div class="go"><i class="fab "></i><span>Already a user?</span> <p [routerLink]="['/login']">Login</p></div>
                 

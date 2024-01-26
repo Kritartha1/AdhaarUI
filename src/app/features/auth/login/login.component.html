@@ -5,7 +5,7 @@
 
 <!-- <button class="close-button" [routerLink]="['/']"></button> -->
 <body >
-    
+
     <app-cross-button></app-cross-button>
    
     <!-- <div class="background">
@@ -13,7 +13,7 @@
         <div class="shape"></div>
     </div> -->
    
-    <form #form="ngForm" (ngSubmit)="onFormSubmit()" class="row" style="max-height: 90%;height: auto;margin: auto;overflow-y: scroll; ">
+    <form class=" row"   #form="ngForm" (ngSubmit)="onFormSubmit()" style="max-height: 90%;height: auto;margin: auto;overflow-y: scroll; ">
 
         
        
@@ -81,13 +81,26 @@
             <!-- errbox -->
         </div>
 
-        <button type="submit">Log In</button>
+        <div class="d-flex justify-content-center">
+            <button type="submit" [disabled]="clicked" >Log In</button>
+            <span *ngIf="clicked" class="loader" style="z-index: 50;"></span>
+        </div>
+        
         <div class="social d-flex justify-content-center">
           <div class="go"><i class="fab "></i>New User? <p [routerLink]="['/register']">Register</p></div>
           
+          
         </div>
     </form>
+
+    <!-- <span  *ngIf="clicked" class="loader" style="z-index: 50;"></span> -->
+
+    <!-- <span class="loader_" style="z-index: 50;"></span> -->
 </body>
+
+
+
+
 
 
 

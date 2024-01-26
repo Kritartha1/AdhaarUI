@@ -6,25 +6,30 @@ import { OcrComponent } from './features/ocr/ocr.component';
 import { RegisterComponent } from './features/auth/register/register.component';
 import { ValidateRegistrationComponent } from './features/validate-registration/validate-registration.component';
 import { UserProfileComponent } from './features/user-profile/user-profile.component';
+import { authGuard } from './features/auth/guard/auth.guard';
 
 const routes: Routes = [
   {
     path: '',
     component: OcrComponent,
-    
   },
   {
     path:'login',
     component:LoginComponent
-  },{
+  },
+  {
     path:'register',
     component:RegisterComponent
-  },{
+  },
+  {
     path:'verify',
-    component:ValidateRegistrationComponent
-  },{
+    component:ValidateRegistrationComponent,
+    canActivate: [authGuard]
+  },
+  {
     path:'user',
-    component:UserProfileComponent
+    component:UserProfileComponent,
+    canActivate: [authGuard]
   }
 
 ];

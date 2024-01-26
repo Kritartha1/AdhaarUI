@@ -36,6 +36,8 @@ export class RegisterComponent {
   minlengthError: boolean = false;
   strongPassword:boolean = false;
   showPasswordStrength:boolean=false;
+  clicked:boolean=false;
+
 
  
 
@@ -98,41 +100,49 @@ export class RegisterComponent {
 
  
   onFormSubmit(): void {
+    this.clicked=true;
    
     // this.router.navigateByUrl('/');
    
 
     if(this.model.password===''&&this.model.username===''&&this.mod.confirmPassword==='') {
+      this.clicked=false;
       this.toast.warning({detail:"ERROR",summary:'Please fill all the details!',duration:2000,position:'topCenter'});
       return;
     }
 
     if(this.model.password===''){
+      this.clicked=false;
       this.toast.warning({detail:"ERROR",summary:'Password can not be empty!',duration:2000,position:'topCenter'});
       return;
     }
     if(this.model.username===''){
+      this.clicked=false;
       this.toast.warning({detail:"ERROR",summary:'Email can not be empty',duration:2000,position:'topCenter'});
       return;
     }
     if(this.mod.confirmPassword!==this.model.password){
+      this.clicked=false;
       this.toast.warning({detail:"MISMATCH",summary:'confirm password should match password',duration:2000,position:'topCenter'});
       // alert("confirm password should match password");
       return;
     }
 
     if(this.form.invalid) {
+      this.clicked=false;
       this.toast.warning({detail:"ERROR",summary:'Please put valid credentials',duration:2000,position:'topCenter'});
       //alert("Please put valid credentials");
       return;
     }
     if(!(this.fieldValidation['confirmPassword'])){
+      this.clicked=false;
       this.toast.warning({detail:"MISMATCH",summary:'confirm password should match password',duration:2000,position:'topCenter'});
       // alert("Password and confirm password does not match");
       return;
     }
 
     if(this.invalidEmail){
+      this.clicked=false;
       this.toast.warning({detail:"INVALID",summary:'Please enter a valid email',duration:2000,position:'topCenter'});
       // alert('Please enter a valid email');
       return;
@@ -140,6 +150,7 @@ export class RegisterComponent {
     
     if(this.uppercaseError||this.lowercaseError||this.digitError||this.specialCharError||this.minlengthError 
     ){
+      this.clicked=false;
       this.toast.warning({detail:"INVALID",summary:'Please enter a valid password',duration:2000,position:'topCenter'});
       return;
     }
@@ -150,6 +161,7 @@ export class RegisterComponent {
     this.authService.register(this.model)
       .subscribe({
         next: (response) => {
+          this.clicked=false;
 
           console.log(this.model);
           console.log(response);
@@ -159,7 +171,7 @@ export class RegisterComponent {
         ,
         error:(err)=>{
 
-
+          this.clicked=false;
           console.log(this.model);
           this.toast.error({detail:"ERROR",summary:'Oops!Try again',duration:2000,position:'topCenter'});
            // alert("Oops!Try again");
