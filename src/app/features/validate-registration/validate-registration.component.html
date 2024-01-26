@@ -2,6 +2,28 @@
 
 
 <div class="container " style="margin-top: 3px;">
+
+    <!-- <p style="
+        top: 15px;
+        display: flex;
+        justify-content: space-between;
+        position: absolute;
+        right: 15px;
+        background: #d44e4e;
+        columns: red;
+        border-radius: 19px;
+        width: 26px;
+        height: 26px;
+        justify-content: center;
+        cursor: pointer;
+        z-index: 20;
+        color: white;
+        box-shadow: 0 0 4px purple;
+        "
+    [routerLink]="['/']" >
+        x
+    </p> -->
+    <app-cross-button></app-cross-button>
    
     <div class=" custom row" >
         <div class="row ">
@@ -149,11 +171,10 @@
        </div>
             
             <br>
-            <div style="display: flex;justify-content:space-between;">
+            <div style="display: flex;justify-content:center;">
 
-              
-                <button [disabled]="isLoading"  class="mt-3 cusbtn  btn" onclick="history.back()"  > << </button>
-                <button [disabled]="form.invalid || isLoading" type="submit" class="mt-3 cusbtn btn " >Verify</button>    
+                <!-- <button [disabled]="isLoading"  class="mt-3 cusbtn  btn" [routerLink]="['/']" > Home </button> -->
+                <button [disabled]="form.invalid || isLoading" type="submit" class="mt-3 cusbtn btn" >Verify</button>    
 
             </div>
             <div *ngIf="isLoading" class="loader">

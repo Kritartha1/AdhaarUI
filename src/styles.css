@@ -32,6 +32,8 @@ html, body { height: 100%; }
 }
 
 
+
+
 /* ::-webkit-scrollbar {
     width: 0; 
     background: transparent;  
@@ -58,3 +60,4 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     padding: 12px;
   
   }
+
