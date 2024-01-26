@@ -1,3 +1,4 @@
 export interface Verify {
-    img:File|null
+    img:File,
+    
 }

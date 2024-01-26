@@ -4,6 +4,7 @@ import { ImageService } from '../services/image.service';
 import { CookieService } from 'ngx-cookie-service';
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
+import { NgToastService } from 'ng-angular-popup';
 
 @Component({
   selector: 'app-validate-registration',
@@ -17,6 +18,8 @@ export class ValidateRegistrationComponent {
   id: string | null;
   isLoading:boolean;
   formattedUID:string='';
+  verify:string[]=['verified','verify'];
+
   /**
    *
    */
@@ -25,7 +28,11 @@ export class ValidateRegistrationComponent {
   /**
    *
    */
-  constructor(private imageService:ImageService, private cookieService: CookieService, private router: Router) {
+  constructor(private imageService:ImageService,
+     private cookieService: CookieService, 
+     private router: Router,
+     private toast:NgToastService
+     ) {
     this.model={
       firstName:'',
       lastName:'',
@@ -94,20 +101,30 @@ export class ValidateRegistrationComponent {
       .subscribe({
         next: (response) => {
 
+          this.toast.success({detail:"SUCCESS",summary:'Successfully verified!',duration:2000,position:'topCenter'});
+     
+
           console.log(response);
           
           this.router.navigateByUrl('/');
         }
         ,
         error:(err)=>{
+          this.form.reset();
+          this.toast.error({detail:"ERROR",summary:'Oops!Try again',duration:2000,position:'topCenter'});
+          
+     
           console.log(this.model)
           console.error(err);
         }
       });
 
     }else{
-      console.log(this.model)
-      console.log("Please sign in");
+      this.toast.warning({detail:"ERROR",summary:'Please sign in!',duration:2000,position:'topCenter'});
+      this.router.navigateByUrl('/login');
+     
+      // console.log(this.model)
+      // console.log("Please sign in");
     }
     this.isLoading = false;
     

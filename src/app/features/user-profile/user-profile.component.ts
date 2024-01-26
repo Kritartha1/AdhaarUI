@@ -24,6 +24,7 @@ export class UserProfileComponent implements OnInit,OnDestroy {
   id: string | null;
   ad_id: string | null;
   email:string|null;
+  verify:string='Verify';
 
 
   constructor(
@@ -75,6 +76,7 @@ export class UserProfileComponent implements OnInit,OnDestroy {
                   {
                     next: (res) => {
                       this.address = res;
+                      this.verify='Verified'
 
                     }
                   }
