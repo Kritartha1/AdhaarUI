@@ -5,6 +5,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { NgToastService } from 'ng-angular-popup';
 
 
 @Component({
@@ -45,6 +46,7 @@ export class RegisterComponent {
      private cookieService: CookieService,
       private router: Router,
       private fb: FormBuilder,
+      private toast:NgToastService
       ) {
     
     this.mod = {
@@ -97,44 +99,48 @@ export class RegisterComponent {
  
   onFormSubmit(): void {
    
-    this.router.navigateByUrl('/');
+    // this.router.navigateByUrl('/');
    
 
     if(this.model.password===''&&this.model.username===''&&this.mod.confirmPassword==='') {
-      alert("Form can't be empty");
+      this.toast.warning({detail:"ERROR",summary:'Please fill all the details!',duration:2000,position:'topCenter'});
       return;
     }
 
     if(this.model.password===''){
-      alert("password can't be empty");
+      this.toast.warning({detail:"ERROR",summary:'Password can not be empty!',duration:2000,position:'topCenter'});
       return;
     }
     if(this.model.username===''){
-      alert("password can't be empty");
+      this.toast.warning({detail:"ERROR",summary:'Email can not be empty',duration:2000,position:'topCenter'});
       return;
     }
     if(this.mod.confirmPassword!==this.model.password){
-      alert("confirm password should match password");
+      this.toast.warning({detail:"MISMATCH",summary:'confirm password should match password',duration:2000,position:'topCenter'});
+      // alert("confirm password should match password");
       return;
     }
 
     if(this.form.invalid) {
-      alert("Please put valid credentials");
+      this.toast.warning({detail:"ERROR",summary:'Please put valid credentials',duration:2000,position:'topCenter'});
+      //alert("Please put valid credentials");
       return;
     }
     if(!(this.fieldValidation['confirmPassword'])){
-      alert('Password and confirm password does not match');
+      this.toast.warning({detail:"MISMATCH",summary:'confirm password should match password',duration:2000,position:'topCenter'});
+      // alert("Password and confirm password does not match");
       return;
     }
 
     if(this.invalidEmail){
-      alert('Please enter a valid email');
+      this.toast.warning({detail:"INVALID",summary:'Please enter a valid email',duration:2000,position:'topCenter'});
+      // alert('Please enter a valid email');
       return;
     }
     
     if(this.uppercaseError||this.lowercaseError||this.digitError||this.specialCharError||this.minlengthError 
     ){
-      alert('Please enter valid password');
+      this.toast.warning({detail:"INVALID",summary:'Please enter a valid password',duration:2000,position:'topCenter'});
       return;
     }
     
@@ -147,13 +153,17 @@ export class RegisterComponent {
 
           console.log(this.model);
           console.log(response);
-           this.router.navigateByUrl('/login');
+          this.toast.success({detail:"SUCCESS",summary:'Registered successfully! Please login now',duration:2000, position:'topCenter'});
+          this.router.navigateByUrl('/login');
         }
         ,
         error:(err)=>{
+
+
           console.log(this.model);
-            alert("Oops!Try again");
-            this.clearForm();
+          this.toast.error({detail:"ERROR",summary:'Oops!Try again',duration:2000,position:'topCenter'});
+           // alert("Oops!Try again");
+          this.clearForm();
             
         }
       });

@@ -4,7 +4,7 @@ import { LoginRequest } from '../models/login-request';
 import { AuthService } from '../services/auth.service';
 import { CookieService } from 'ngx-cookie-service';
 import { NgForm } from '@angular/forms';
-import { retry } from 'rxjs';
+import { NgToastService } from 'ng-angular-popup';
 
 
 
@@ -26,7 +26,7 @@ export class LoginComponent {
      *
      */
 
-    constructor(private authService: AuthService, private cookieService: CookieService, private router: Router) {
+    constructor(private authService: AuthService, private cookieService: CookieService, private router: Router,private toast:NgToastService) {
         this.model = {
           email: '',
           password: ''
@@ -36,13 +36,15 @@ export class LoginComponent {
       onFormSubmit(): void {
 
         if(this.model.email===''&&this.model.password===''){
-          alert("Please fill all the details");
+          this.toast.warning({detail:"ERROR",summary:'Please fill all the details!',duration:2000,position:'topCenter'});
           return;
         }else if (this.model.email==='') {
-          alert("Email can't be empty");
+          this.toast.warning({detail:"ERROR",summary:'Email can not be empty!',duration:2000,position:'topCenter'});
+          
           return;
         } else if (this.model.password==='') {
-          alert("Password can't be empty");
+          this.toast.warning({detail:"ERROR",summary:'Password can not be empty',duration:2000,position:'topCenter'});
+          
           return;
         }
 
@@ -69,12 +71,15 @@ export class LoginComponent {
                 id: response.id
               })
 
+              this.toast.success({detail:"SUCCESS",summary:'Logged in successfully!',duration:3000, position:'topCenter'});
+
               // console.log(response);
               this.router.navigateByUrl('/');
             }
             ,
             error:(err)=>{
-              console.error(err);
+              this.toast.error({detail:"Log in failed",summary:'Oops!Please try again',duration:2000,position:'topCenter'});
+              //console.error(err);
             }
           });
       }
