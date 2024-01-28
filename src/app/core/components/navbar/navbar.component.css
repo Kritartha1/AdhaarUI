@@ -73,5 +73,15 @@
     box-shadow: 0 4px 15px 0 rgba(23, 168, 108, 0.75);
 }
 
+.exclamation-sign{
+    top: 24px;
+    height: 25px;
+    position: absolute;
+    right: 6px;
+    width: 25px;
+    border-radius: 43px;
+    background: #0000008c;
+}
+
 
   

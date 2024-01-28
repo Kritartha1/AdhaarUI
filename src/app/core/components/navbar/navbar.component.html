@@ -36,6 +36,8 @@ height: 65.92px;"> -->
           data-bs-display="static"
           aria-expanded="false"
         >
+          <span *ngIf="user===undefined" class="exclamation-sign">!</span>
+
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="32"
