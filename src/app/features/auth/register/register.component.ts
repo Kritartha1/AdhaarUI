@@ -37,6 +37,13 @@ export class RegisterComponent {
   strongPassword:boolean = false;
   showPasswordStrength:boolean=false;
   clicked:boolean=false;
+  showConf:boolean=false;
+
+  
+  passwordInputType: string = 'password';
+  confPass:string = 'password';
+  //eyeclicked:boolean=false;
+    
 
 
  
@@ -94,6 +101,20 @@ export class RegisterComponent {
 
   onPasswordStrengthChanged(event: boolean) {
     this.strongPassword = event;
+  }
+
+  togglePasswordVisibility():void {
+    
+    this.passwordInputType = (this.passwordInputType === 'password') ? 'text' : 'password';
+  }
+
+  toggleConfPasswordVisibility():void {
+    this.confPass = (this.confPass === 'password') ? 'text' : 'password';
+  }
+
+  preventBlur(event: MouseEvent): void {
+    event.preventDefault(); // Prevent the default behavior (losing focus)
+    event.stopPropagation(); // Stop the event from propagating further
   }
 
  

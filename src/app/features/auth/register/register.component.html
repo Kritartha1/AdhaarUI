@@ -43,7 +43,9 @@
 
         <label for="password">Password<span style="color: red;">*</span></label>
 
-        <input type="password" 
+        <div class="d-flex justify-content-evenly">
+
+          <input [type]="passwordInputType"
          class="form-control "
              placeholder="Password"
              id="password"
@@ -56,9 +58,36 @@
                 'invalid': (minlengthError || uppercaseError || lowercaseError || digitError || specialCharError)
               }"
              (ngModelChange)="validatePassword()"
-             (focus)="showPasswordStrength = true" 
-             (blur)="showPasswordStrength = false" 
              >
+
+             <div>
+
+              <img
+              *ngIf="passwordInputType === 'password'; else temp"
+              style="position: absolute;
+              transform: translateY(100%);
+              cursor: pointer;
+              right: 47px;"
+              
+              (click)="togglePasswordVisibility()" width="20" height="20" src="https://img.icons8.com/ios-glyphs/20/visible--v1.png" alt="visible--v1"/>
+  
+              <ng-template #temp>
+                  <img style="position: absolute;
+                      transform: translateY(100%);
+                      cursor: pointer;
+                      right: 47px;"
+                      (click)="togglePasswordVisibility()" 
+                      width="20" 
+                      height="20"  
+                      src="https://img.icons8.com/windows/20/invisible.png" 
+                      alt="invisible"/>
+              </ng-template>
+             </div>
+            
+        </div>
+        
+
+             
 
         <app-password-strength
        
@@ -87,17 +116,51 @@
 
         <label for="confirmPassword">Confirm Password<span style="color: red;">*</span></label>
 
-        <input type="password" class="form-control" 
-         placeholder="Re-enter Password" id="confirmpassword" name="confirmPassword" 
-         required  
-         (input)="onConfirmPasswordInput()"
-         [(ngModel)]="mod.confirmPassword"
-         [ngClass]="{
-                
-            'valid': fieldValidation['confirmPassword'] ,
-            'invalid': !fieldValidation['confirmPassword']
-          }"
-         >
+        <div class="d-flex justify-content-evenly" >
+
+          <input
+          [type]="confPass"
+          class="form-control" 
+          placeholder="Re-enter Password" id="confirmpassword" name="confirmPassword" 
+          required  
+          (input)="onConfirmPasswordInput()"
+          [(ngModel)]="mod.confirmPassword"
+          [ngClass]="{
+                 
+             'valid': fieldValidation['confirmPassword'] ,
+             'invalid': !fieldValidation['confirmPassword']
+           }"
+          
+           
+          >
+
+          <div >
+
+            <img
+            *ngIf="confPass==='password'; else temp1"
+            style="position: absolute;
+            transform: translateY(100%);
+            cursor: pointer;
+            right: 47px;"
+            (click)="toggleConfPasswordVisibility()" width="20" height="20" src="https://img.icons8.com/ios-glyphs/20/visible--v1.png" alt="visible--v1"/>
+
+            <ng-template #temp1 >
+              
+                <img style="position: absolute;
+                    transform: translateY(100%);
+                    cursor: pointer;
+                    right: 47px;"
+                    (click)="toggleConfPasswordVisibility()" 
+                    width="20" 
+                    height="20"  
+                    src="https://img.icons8.com/windows/20/invisible.png" 
+                    alt="invisible"/>
+            </ng-template>
+          </div>
+          
+
+        </div>
+       
          <div class="field-err" *ngIf="!fieldValidation['confirmPassword']">Passwords do not match.</div>
 
 
