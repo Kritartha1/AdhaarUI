@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgToastService } from 'ng-angular-popup';
 import { from, Observable } from 'rxjs';
@@ -13,17 +13,16 @@ import { AuthService } from 'src/app/features/auth/services/auth.service';
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css']
 })
-export class NavbarComponent {
-
-
+export class NavbarComponent implements OnInit,OnDestroy{
 
   user?: User;
-
-  
   constructor(private authService: AuthService, private router: Router,private toast:NgToastService) {
   
   }
-
+  ngOnDestroy(): void {
+    this.authService.logout();
+    
+  }
 
   ngOnInit(): void {
     this.authService.user()
@@ -32,20 +31,14 @@ export class NavbarComponent {
           this.user = response;
         }
       });
-
-
     this.user = this.authService.getuser();
   }
 
   onLogout(): void {
     this.authService.logout();
     this.toast.success({detail:"SUCCESS",summary:'Logged out!',duration:2000,position:'topCenter'});
-     
     this.router.navigateByUrl('/');
-
   }
-
-
 
 }
 

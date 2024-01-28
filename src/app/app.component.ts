@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { MiscService } from './shared/misc.service';
+import { AuthService } from './features/auth/services/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -12,8 +13,14 @@ export class AppComponent {
   /**
    *
    */
-  constructor(public misc:MiscService) {
+  constructor(public misc:MiscService,private authService:AuthService) {
     
     
   }
+
+  @HostListener('window:unload')
+  windowOnUnload(){
+    this.authService.logout();
+  }
+ 
 }
