@@ -19,10 +19,11 @@ export const authGuard: CanActivateFn = (route, state) => {
 
 
     const expirationDate = decodedToken.exp * 1000;
+    console.log(expirationDate,"haha");
     const currentTime = new Date().getTime();
 
     if (expirationDate < currentTime) {
-
+      
       authService.logout();
       return router.createUrlTree(['/login'], { queryParams: { returnUrl: state.url } });
     } else {
@@ -31,7 +32,9 @@ export const authGuard: CanActivateFn = (route, state) => {
     }
 
   } else {
+    
     authService.logout();
+    console.log("hehe");
     return router.createUrlTree(['/login'], { queryParams: { returnUrl: state.url } });
   }
 

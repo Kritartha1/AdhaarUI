@@ -11,8 +11,8 @@
 
 <!-- <img src="assets/newlogo2.png" class="navbar-brand" style="width: 106px;
 height: 65.92px;"> -->
-<div>
-  <a class="navbar-brand" href="#" >Identify<span style="font-size: larger;
+<div style="border: none;">
+  <a class="navbar-brand" href="#"  >Identify<span style="font-size: larger;
     color: #e6aeee;">Me</span></a>
   <!-- <img src="assets/arrow.png"  style="width: 106px;
   height: 65.92px;"> -->
@@ -36,15 +36,13 @@ height: 65.92px;"> -->
           data-bs-display="static"
           aria-expanded="false"
         >
-          <span *ngIf="user===undefined" class="exclamation-sign">!</span>
+         
 
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="32"
             height="43"
             fill="white"
-            
-            
             class="bi bi-person-fill"
             viewBox="0 0 16 16"
           >
@@ -52,6 +50,8 @@ height: 65.92px;"> -->
               d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6"
             />
           </svg>
+
+          
         </button>
         <ul class="dropdown-menu dropdown-menu-lg-end">
           <!-- if not signed in then show the first nav-item-->

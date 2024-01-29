@@ -18,7 +18,7 @@ export class ValidateRegistrationComponent {
   id: string | null;
   isLoading:boolean;
   formattedUID:string='';
-  verify:string[]=['verified','verify'];
+  
 
   /**
    *
@@ -92,7 +92,8 @@ export class ValidateRegistrationComponent {
   onFormSubmit(): void {
 
     this.isLoading = true;
-    this.id = localStorage.getItem('user-Id');
+    //this.id = localStorage.getItem('user-Id');
+    this.id = sessionStorage.getItem('user-Id');
     this.model.uid = this.model.uid.replace(/ /g, '');
 
     if(this.id){

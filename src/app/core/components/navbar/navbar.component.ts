@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgToastService } from 'ng-angular-popup';
 import { from, Observable } from 'rxjs';
@@ -17,10 +17,16 @@ export class NavbarComponent implements OnInit,OnDestroy{
 
   user?: User;
   constructor(private authService: AuthService, private router: Router,private toast:NgToastService) {
-  
+    
   }
+
+  // @HostListener('window:unload')
+  // windowOnUnload(){
+  //   this.authService.logout();
+  // }
+  
   ngOnDestroy(): void {
-    this.authService.logout();
+    // this.authService.logout();
     
   }
 

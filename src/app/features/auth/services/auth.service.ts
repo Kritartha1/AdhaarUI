@@ -45,6 +45,10 @@ export class AuthService {
     localStorage.setItem('user-email', user.email);
     localStorage.setItem('user-roles', user.roles.join(','));
     localStorage.setItem('user-Id', user.id);
+
+    sessionStorage.setItem('user-email', user.email);
+    sessionStorage.setItem('user-roles', user.roles.join(','));
+    sessionStorage.setItem('user-Id', user.id);
   }
 
   user(): Observable<User | undefined> {
@@ -52,9 +56,13 @@ export class AuthService {
   }
 
   getuser(): User | undefined {
-    const email = localStorage.getItem('user-email');
-    const roles = localStorage.getItem('user-roles');
-    const id = localStorage.getItem('user-Id');
+    // const email = localStorage.getItem('user-email');
+    // const roles = localStorage.getItem('user-roles');
+    // const id = localStorage.getItem('user-Id');
+
+    const email = sessionStorage.getItem('user-email');
+    const roles = sessionStorage.getItem('user-roles');
+    const id = sessionStorage.getItem('user-Id');
 
     if (email && roles && id) {
       const user: User = {
@@ -70,6 +78,7 @@ export class AuthService {
 
   logout(): void {
     localStorage.clear();
+
     this.cookieService.delete('Authorization', '/');
     this.$user.next(undefined);
 

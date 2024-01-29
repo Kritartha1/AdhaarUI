@@ -18,9 +18,6 @@ export class AppComponent {
     
   }
 
-  @HostListener('window:unload')
-  windowOnUnload(){
-    this.authService.logout();
-  }
+ 
  
 }

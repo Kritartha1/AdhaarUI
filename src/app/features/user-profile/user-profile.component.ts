@@ -59,8 +59,11 @@ export class UserProfileComponent implements OnInit,OnDestroy {
   
   ngOnInit(): void {
     this.maxDate = this.getCurrentDate();
-    this.id = localStorage.getItem('user-Id');
-    this.email=localStorage.getItem('user-email');
+    // this.id = localStorage.getItem('user-Id');
+    // this.email=localStorage.getItem('user-email');
+
+    this.id = sessionStorage.getItem('user-Id');
+    this.email=sessionStorage.getItem('user-email');
     if (this.id) {
       console.log(this.id);
       this.editUserSubscription = this.authService.getUserById(this.id)
