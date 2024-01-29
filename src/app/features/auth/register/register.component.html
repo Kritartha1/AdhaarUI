@@ -128,6 +128,9 @@
                        'invalid': (minlengthError || uppercaseError || lowercaseError || digitError || specialCharError)
                      }"
                     (ngModelChange)="validatePassword()"
+                    (focus)="showPasswordStrength=true"
+                    (blur)="showPasswordStrength=false"
+                    
                     >
        
                     <div>

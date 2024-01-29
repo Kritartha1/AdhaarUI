@@ -89,7 +89,7 @@ export class RegisterComponent {
 
   validatePassword():void{
     
-    this.showPasswordStrength=true;
+    //this.showPasswordStrength=true;
     this.uppercaseError = !(/(?=.*?[A-Z])/.test(this.model.password));
     this.lowercaseError = !(/(?=.*?[a-z])/.test(this.model.password));
     this.digitError =! (/(?=.*?[0-9])/.test(this.model.password));
