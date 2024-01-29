@@ -45,7 +45,7 @@ export class PasswordStrengthComponent implements OnChanges {
     force += passedMatches * 10;
 
     // 6
-    force = password.length <= 6 ? Math.min(force, 10) : force;
+    force = password.length <= 7 ? Math.min(force, 10) : force;
 
     // 7
     force = passedMatches === 1 ? Math.min(force, 10) : force;

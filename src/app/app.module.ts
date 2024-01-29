@@ -22,6 +22,7 @@ import { PasswordStrengthComponent } from './features/password-strength/password
 import { AppNumbersOnlyDirective } from './features/app-numbers-only.directive';
 
 import { NgToastModule } from 'ng-angular-popup';
+import { ValidatenewComponent } from './features/validatenew/validatenew.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { NgToastModule } from 'ng-angular-popup';
     CrossButtonComponent,
     PasswordStrengthComponent,
     AppNumbersOnlyDirective,
+    ValidatenewComponent,
     
 
   ],

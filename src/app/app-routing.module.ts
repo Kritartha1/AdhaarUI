@@ -7,6 +7,7 @@ import { RegisterComponent } from './features/auth/register/register.component';
 import { ValidateRegistrationComponent } from './features/validate-registration/validate-registration.component';
 import { UserProfileComponent } from './features/user-profile/user-profile.component';
 import { authGuard } from './features/auth/guard/auth.guard';
+import { ValidatenewComponent } from './features/validatenew/validatenew.component';
 
 const routes: Routes = [
   {
@@ -30,6 +31,9 @@ const routes: Routes = [
     path:'user',
     component:UserProfileComponent,
     canActivate: [authGuard]
+  },{
+    path:'dummy',
+    component:ValidatenewComponent
   }
 
 ];
