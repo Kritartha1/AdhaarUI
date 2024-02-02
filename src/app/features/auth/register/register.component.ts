@@ -194,7 +194,7 @@ export class RegisterComponent {
 
           this.clicked=false;
           console.log(this.model);
-          this.toast.error({detail:"ERROR",summary:'Oops!Try again',duration:2000,position:'topCenter'});
+          this.toast.error({detail:"ERROR",summary:`${err.error}`,duration:2000,position:'topCenter'});
            // alert("Oops!Try again");
           this.clearForm();
             

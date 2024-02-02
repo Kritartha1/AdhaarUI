@@ -42,6 +42,7 @@ import { ValidatenewComponent } from './features/validatenew/validatenew.compone
     AppNumbersOnlyDirective,
     ValidatenewComponent,
     
+    
 
   ],
   imports: [

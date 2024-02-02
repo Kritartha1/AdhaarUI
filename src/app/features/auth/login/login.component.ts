@@ -96,8 +96,8 @@ export class LoginComponent {
             ,
             error:(err)=>{
               this.clicked=false;
-              this.toast.error({detail:"Log in failed",summary:'Oops!Please try again',duration:2000,position:'topCenter'});
-              //console.error(err);
+              this.toast.error({detail:"Log in failed",summary:`${err.error}Oops!Please try again`,duration:2000,position:'topCenter'});
+              // console.error(err);
             }
           });
           

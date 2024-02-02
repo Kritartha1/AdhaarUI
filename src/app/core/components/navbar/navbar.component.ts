@@ -41,10 +41,15 @@ export class NavbarComponent implements OnInit,OnDestroy{
   }
 
   onLogout(): void {
+    console.log("navbar");
     this.authService.logout();
     this.toast.success({detail:"SUCCESS",summary:'Logged out!',duration:2000,position:'topCenter'});
     this.router.navigateByUrl('/');
   }
+
+  // goHome():void{
+  //   this.router.navigateByUrl('/');
+  // }
 
 }
 
