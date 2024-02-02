@@ -37,8 +37,11 @@
          <!-- class="errbox" -->
          <div  *ngIf="form.controls['username']!.invalid && (form.controls['username']!.dirty || form.controls['username']!.touched)">
             <div class="field-err" *ngIf="form.controls['username']!.errors?.required">*Email is required.</div>
-            <div class="field-err" *ngIf=" !(form.controls['username']!.errors?.required) && invalidEmail  ">*Invalid email format.</div>
+            <!-- <div class="field-err" *ngIf=" !(form.controls['username']!.errors?.required) && invalidEmail  ">*Invalid email format.</div> -->
         </div>
+
+        <div class="field-err" *ngIf=" !(form.controls['username']!.errors?.required) && invalidEmail  ">*Invalid email format.</div>
+       
 
 <!-- 
         <label for="password">Password<span style="color: red;">*</span></label>
