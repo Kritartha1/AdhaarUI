@@ -96,6 +96,8 @@ input{
     margin-top: 8px;
     font-size: 14px;
     font-weight: 300;
+    border-radius: 18px;
+    box-shadow: 0px 1px 2px #1d611c;
 }
 ::placeholder{
     color: #3e4146;
@@ -170,6 +172,8 @@ button{
   /* background-color: rgba(65, 172, 199, 0.993);
   color: #f0f1f1; */
   text-align: center;
+  position: relative;
+  top: 63px;
 }
 .social p{
     color: #1845ad;

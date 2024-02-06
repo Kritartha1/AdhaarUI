@@ -15,6 +15,7 @@ p{
     cursor: pointer;
     color:white;
     box-shadow: 0 0 4px purple;
+    z-index: 1;
 }
 p:hover{
     cursor: pointer;

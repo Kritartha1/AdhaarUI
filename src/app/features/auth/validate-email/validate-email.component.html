@@ -6,14 +6,14 @@
 <!-- <button class="close-button" [routerLink]="['/']"></button> -->
 <body >
 
-    <app-cross-button></app-cross-button>
+    <app-cross-button ></app-cross-button>
    
    
    
     <!-- <form class=" row"   #form="ngForm" (ngSubmit)="onFormSubmit()" style="max-height: 90%;height: auto;margin: auto;overflow-y: scroll; "> -->
         <form class=" row"   #form="ngForm" style="max-height: 90%;height: auto;margin: auto;overflow-y: scroll; "> 
-        <h3>You're almost done! </h3>
-        <p>We sent a launch code to sunugunus@gmail.com</p>
+        <b>You're almost done! </b>
+        <p>We sent a launch code to <span style="color: #94e359;">sunugunus@gmail.com</span></p>
 
         
 
@@ -43,13 +43,15 @@
 
 
 
-        <!-- <div class="d-flex justify-content-center">
-            <button type="submit" [disabled]="clicked" >Log In</button>
-            <span *ngIf="clicked" class="loader" style="z-index: 50;"></span>
+        <div class="d-flex justify-content-center ">
+            <button style="width: 30%;
+            color: white;
+            box-shadow: 0 1px 2px black;" >Validate</button>
+            
         </div>
-         -->
+         
         <div class="social d-flex justify-content-center">
-          <div class="go"><i class="fab "></i>Didn't get your email? <p (click)="resendCode()" style="cursor: pointer;">Resend the code</p></div>
+          <div style="width: auto !important;" class="go"><i class="fab "></i>Didn't get your email? <p (click)="resendCode()" style="cursor: pointer;">Resend the code</p></div>
           
           
         </div>
