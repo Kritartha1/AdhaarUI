@@ -23,6 +23,7 @@ import { AppNumbersOnlyDirective } from './features/app-numbers-only.directive';
 
 import { NgToastModule } from 'ng-angular-popup';
 import { ValidatenewComponent } from './features/validatenew/validatenew.component';
+import { ValidateEmailComponent } from './features/auth/validate-email/validate-email.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { ValidatenewComponent } from './features/validatenew/validatenew.compone
     PasswordStrengthComponent,
     AppNumbersOnlyDirective,
     ValidatenewComponent,
+    ValidateEmailComponent,
     
     
 

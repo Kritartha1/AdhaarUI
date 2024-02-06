@@ -8,6 +8,7 @@ import { ValidateRegistrationComponent } from './features/validate-registration/
 import { UserProfileComponent } from './features/user-profile/user-profile.component';
 import { authGuard } from './features/auth/guard/auth.guard';
 import { ValidatenewComponent } from './features/validatenew/validatenew.component';
+import { ValidateEmailComponent } from './features/auth/validate-email/validate-email.component';
 
 const routes: Routes = [
   {
@@ -34,6 +35,9 @@ const routes: Routes = [
   },{
     path:'dummy',
     component:ValidatenewComponent
+  },{
+    path:'validateEmail',
+    component:ValidateEmailComponent
   }
 
 ];

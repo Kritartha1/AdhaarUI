@@ -1,0 +1,61 @@
+
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
+</head>
+
+<!-- <button class="close-button" [routerLink]="['/']"></button> -->
+<body >
+
+    <app-cross-button></app-cross-button>
+   
+   
+   
+    <!-- <form class=" row"   #form="ngForm" (ngSubmit)="onFormSubmit()" style="max-height: 90%;height: auto;margin: auto;overflow-y: scroll; "> -->
+        <form class=" row"   #form="ngForm" style="max-height: 90%;height: auto;margin: auto;overflow-y: scroll; "> 
+        <h3>You're almost done! </h3>
+        <p>We sent a launch code to sunugunus@gmail.com</p>
+
+        
+
+       
+
+        <!-- <label for="token">Token<span style="color: red;">*</span></label>
+        <input 
+        type="text" 
+        class="form-control" 
+        name="token" 
+        placeholder="token" 
+        id="token" 
+        [(ngModel)]="model.token"
+        
+        > -->
+
+        <label for="token">Token<span style="color: red;">*</span></label>
+        <input 
+        type="text" 
+        class="form-control" 
+        name="token" 
+        placeholder="token" 
+        id="token" 
+       
+        
+        >
+
+
+
+        <!-- <div class="d-flex justify-content-center">
+            <button type="submit" [disabled]="clicked" >Log In</button>
+            <span *ngIf="clicked" class="loader" style="z-index: 50;"></span>
+        </div>
+         -->
+        <div class="social d-flex justify-content-center">
+          <div class="go"><i class="fab "></i>Didn't get your email? <p (click)="resendCode()" style="cursor: pointer;">Resend the code</p></div>
+          
+          
+        </div>
+    </form>
+
+    <!-- <span  *ngIf="clicked" class="loader" style="z-index: 50;"></span> -->
+
+    <!-- <span class="loader_" style="z-index: 50;"></span> -->
+</body>
