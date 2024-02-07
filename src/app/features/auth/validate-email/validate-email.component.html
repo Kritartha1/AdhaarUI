@@ -10,10 +10,10 @@
    
    
    
-    <!-- <form class=" row"   #form="ngForm" (ngSubmit)="onFormSubmit()" style="max-height: 90%;height: auto;margin: auto;overflow-y: scroll; "> -->
-        <form class=" row"   #form="ngForm" style="max-height: 90%;height: auto;margin: auto;overflow-y: scroll; "> 
+    <form class=" row"   #form="ngForm" (ngSubmit)="onFormSubmit()" style="max-height: 90%;height: auto;margin: auto;overflow-y: scroll; ">
+        <!-- <form class=" row"   #form="ngForm" style="max-height: 90%;height: auto;margin: auto;overflow-y: scroll; ">  -->
         <b>You're almost done! </b>
-        <p>We sent a token to <span style="color: #4e9519;">sunugunus@gmail.com</span></p>
+        <p>We sent a token to <span style="color: #4e9519;">{{email}}</span></p>
 
         
         <!-- <label for="token">Token<span style="color: red;">*</span></label>
@@ -34,16 +34,22 @@
         name="token" 
         placeholder="Token" 
         id="token" 
-       
+        [(ngModel)]="mod.token"
+        (ngModelChange)="dummy()"
+        required
         
         >
+
+        <p class="alert alert-warning" role="alert" style="font-size: small;
+        margin-top: 5px;
+        color: red;">{{error_}}</p>
 
 
 
         <div class="d-flex justify-content-center ">
             <button style="width: 30%;
             color: white;
-            box-shadow: 0 1px 2px black;" >Validate</button>
+            box-shadow: 0 1px 2px black;" type="submit" >Validate</button>
             
         </div>
          

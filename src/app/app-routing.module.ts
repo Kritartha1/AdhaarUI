@@ -36,7 +36,7 @@ const routes: Routes = [
     path:'dummy',
     component:ValidatenewComponent
   },{
-    path:'validateEmail/:id',
+    path:'validateEmail/:id/:email',
     component:ValidateEmailComponent
   }
 

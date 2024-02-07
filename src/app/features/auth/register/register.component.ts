@@ -45,12 +45,6 @@ export class RegisterComponent {
   //eyeclicked:boolean=false;
     
 
-
- 
-
-  /**
-   *
-   */
   constructor(private authService: AuthService,
      private cookieService: CookieService,
       private router: Router,
@@ -70,7 +64,6 @@ export class RegisterComponent {
   this.fieldValidation['confirmPassword']=true;
 
    
-    
   }
   validateEmail():void{
     this.invalidEmail=!this.emailPattern.test(this.model.username);
@@ -177,8 +170,6 @@ export class RegisterComponent {
     }
     
 
-    
-
     this.authService.register(this.model)
       .subscribe({
         next: (response) => {
@@ -195,7 +186,7 @@ export class RegisterComponent {
               this.clicked=false;
               console.log(res.mssg);
               
-              this.router.navigateByUrl(`/validateEmail/${response.id}`);
+              this.router.navigateByUrl(`/validateEmail/${response.id}/${this.model.username}`);
             },
 
             error:(err)=>{
@@ -204,17 +195,16 @@ export class RegisterComponent {
               
               this.toast.warning({detail:"Server error",summary:`${err.error}! Click on resend token`,duration:5000, position:'topCenter'});
          
-              this.router.navigateByUrl(`/validateEmail/${response.id}`);
+              this.router.navigateByUrl(`/validateEmail/${response.id}/${this.model.username}`);
+            
                 
             }
           })
-
-          
+  
         }
         ,
         error:(err)=>{
           
-
           this.clicked=false;
           if(err.status==0){
             this.toast.error({detail:"ERROR",summary:'Server error! Please try again later',duration:2000,position:'topCenter'});

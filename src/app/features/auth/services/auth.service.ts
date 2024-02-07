@@ -11,6 +11,7 @@ import { SignupResponse } from '../models/signup-response';
 import { RegisterRequest } from '../models/register-request';
 import { text } from 'node:stream/consumers';
 import { TokenResponse } from '../models/token-response';
+import { EmailValidationResponse } from '../models/email-validation-message-response';
 
 @Injectable({
   providedIn: 'root'
@@ -47,6 +48,15 @@ export class AuthService {
     );
   }
 
+  checkConfirmEmail(id:string):Observable<EmailValidationResponse>{
+    return this.http.get<EmailValidationResponse>(`${environment.apiBaseUrl}/api/Auth/CheckConfirmEmail/${id}`
+    );
+  }
+
+  confirmEmail(token:string,email:string):Observable<EmailValidationResponse>{
+    return this.http.post<EmailValidationResponse>(`${environment.apiBaseUrl}/api/Auth/ConfirmEmail`,{token:token,email:email }
+    );
+  }
   
   setuser(user: User): void {
     this.$user.next(user);

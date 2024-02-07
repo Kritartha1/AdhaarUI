@@ -14,10 +14,14 @@ export class ValidateEmailComponent implements OnInit,OnDestroy{
    *
    */
   id:string|null=null;
+  email:string|null='';
+  resendClicked:boolean=false;
   clicked:boolean=false;
   paramsSubscription?: Subscription;
   authSubscription?:Subscription;
-  mod:{email:string,token:string};
+  tokenSubscription?:Subscription;
+  mod:{token:string};
+  error_:string='';
 
 
   constructor(private route: ActivatedRoute,
@@ -25,7 +29,7 @@ export class ValidateEmailComponent implements OnInit,OnDestroy{
     private router:Router,
     private toast:NgToastService) {
       this.mod={
-        email:'',
+        
         token:''
       }
       
@@ -38,6 +42,8 @@ export class ValidateEmailComponent implements OnInit,OnDestroy{
       {
         next: (params) => {
           this.id = params.get('id');
+          
+          this.email=params.get('email');
         },
         error:(err)=>{
           console.log("id not fetched");
@@ -47,32 +53,90 @@ export class ValidateEmailComponent implements OnInit,OnDestroy{
     
   }
 
-  resendCode():void{
+  onFormSubmit():void{
+    if(this.mod.token==''){
+      this.error_="Token required";
+      return;
+    }
     if(this.id){
+      this.clicked=true;
+      this.tokenSubscription=this.authService.confirmEmail(this.mod.token,this.email!).subscribe({
+        next:(res)=>{
+          this.clicked=false;
+          this.toast.success({detail:"Success",summary:"Email validated successfully!",duration:3000, position:'topCenter'});
+          this.router.navigateByUrl('/login');
+        },
+        error:(err)=>{
+
+          this.mod.token='';
+          if(err.status==0){
+            this.error_="Server down";
+            return;
+          }
+          this.error_=err.error;
+          //this.toast.error({detail:"Error",summary:`${err.error}`,duration:3000, position:'topCenter'});
+          this.clicked=false;
+        }
+      }
+        );
+    }
+    
+    // console.log(this.mod);
+  }
+
+  toggle():void{
+    this.resendClicked=false;
+    this.clicked=false;
+  }
+
+  resendCode():void{
+    
+    if(this.id){
+      // this.clicked=true;
       this.authSubscription=this.authService.generateToken(this.id)
           .subscribe({
             
             next:(res)=>{
-              this.clicked=false;
+              // this.clicked=false;
+              this.resendClicked=false;
+              this.toast.info({detail:"Email sent",summary:"New token sent!",duration:5000, position:'topCenter'});
+         
               console.log(res.mssg);
+              //this.router.navigateByUrl(`/validateEmail/${this.id}/${this.email}`);
+            
               
-              this.router.navigateByUrl(`/validateEmail/${this.id}`);
             },
 
             error:(err)=>{
-              this.clicked=false;
-              console.log(err,"err");
+              // this.clicked=false;
+              this.resendClicked=false;
+              
+              if(err.status==0){
+                this.error_="Server down";
+                return;
+              }
+              this.error_=err.error;
               
               this.toast.warning({detail:"Server error",summary:`${err.error}!`,duration:5000, position:'topCenter'});
          
-              this.router.navigateByUrl(`/validateEmail/${this.id}`);
+              // this.router.navigateByUrl(`/validateEmail/${this.id}`);
                 
             }
           })
 
+    }else{
+      this.toast.warning({detail:"Internal error",summary:"Please try again later!",duration:5000, position:'topCenter'});
+         
     }
-    
-    
+     
+  }
+
+  dummy():void{
+    if(this.mod.token==''){
+      this.error_='Token required';
+    }else{
+      this.error_='';
+    }
     
   }
 
