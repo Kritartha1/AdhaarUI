@@ -9,6 +9,8 @@ import { environment } from 'src/environments/environment.development';
 import { SignupRequest } from '../models/signup-request';
 import { SignupResponse } from '../models/signup-response';
 import { RegisterRequest } from '../models/register-request';
+import { text } from 'node:stream/consumers';
+import { TokenResponse } from '../models/token-response';
 
 @Injectable({
   providedIn: 'root'
@@ -37,6 +39,12 @@ export class AuthService {
 
   getUserById(id: string): Observable<User> {
     return this.http.get<User>(`${environment.apiBaseUrl}/api/Auth/${id}`)
+  }
+
+  generateToken(id:string):Observable<TokenResponse>{
+    //return this.http.get<string>(`${environment.apiBaseUrl}/api/Auth/Token/${id}`,);
+    return this.http.get<TokenResponse>(`${environment.apiBaseUrl}/api/Auth/Token/${id}`
+    );
   }
 
   

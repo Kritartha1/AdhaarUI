@@ -182,19 +182,47 @@ export class RegisterComponent {
     this.authService.register(this.model)
       .subscribe({
         next: (response) => {
-          this.clicked=false;
+          
 
           console.log(this.model);
           console.log(response);
-          this.toast.success({detail:"SUCCESS",summary:'Registered successfully! Please login now',duration:2000, position:'topCenter'});
-          this.router.navigateByUrl('/login');
+          this.toast.success({detail:"SUCCESS",summary:'Registered successfully!',duration:2000, position:'topCenter'});
+         
+          this.authService.generateToken(response.id)
+          .subscribe({
+            
+            next:(res)=>{
+              this.clicked=false;
+              console.log(res.mssg);
+              
+              this.router.navigateByUrl(`/validateEmail/${response.id}`);
+            },
+
+            error:(err)=>{
+              this.clicked=false;
+              console.log(err,"err");
+              
+              this.toast.warning({detail:"Server error",summary:`${err.error}! Click on resend token`,duration:5000, position:'topCenter'});
+         
+              this.router.navigateByUrl(`/validateEmail/${response.id}`);
+                
+            }
+          })
+
+          
         }
         ,
         error:(err)=>{
+          
 
           this.clicked=false;
-          console.log(this.model);
-          this.toast.error({detail:"ERROR",summary:`${err.error}`,duration:2000,position:'topCenter'});
+          if(err.status==0){
+            this.toast.error({detail:"ERROR",summary:'Server error! Please try again later',duration:2000,position:'topCenter'});
+          
+          }else{
+            this.toast.error({detail:"ERROR",summary:`${err.error}`,duration:2000,position:'topCenter'});
+          
+          }
            // alert("Oops!Try again");
           this.clearForm();
             
