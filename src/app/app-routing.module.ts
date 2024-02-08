@@ -9,6 +9,8 @@ import { UserProfileComponent } from './features/user-profile/user-profile.compo
 import { authGuard } from './features/auth/guard/auth.guard';
 import { ValidatenewComponent } from './features/validatenew/validatenew.component';
 import { ValidateEmailComponent } from './features/auth/validate-email/validate-email.component';
+import { ForgotPasswordComponent } from './features/auth/forgot-password/forgot-password.component';
+import { NewPasswordComponent } from './features/auth/new-password/new-password.component';
 
 const routes: Routes = [
   {
@@ -38,6 +40,12 @@ const routes: Routes = [
   },{
     path:'validateEmail/:id/:email',
     component:ValidateEmailComponent
+  },{
+    path:'resetPassword',
+    component:ForgotPasswordComponent
+  },{
+    path:'newpassword',
+    component:NewPasswordComponent
   }
 
 ];

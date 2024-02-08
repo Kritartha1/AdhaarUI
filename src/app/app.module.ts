@@ -24,6 +24,8 @@ import { AppNumbersOnlyDirective } from './features/app-numbers-only.directive';
 import { NgToastModule } from 'ng-angular-popup';
 import { ValidatenewComponent } from './features/validatenew/validatenew.component';
 import { ValidateEmailComponent } from './features/auth/validate-email/validate-email.component';
+import { ForgotPasswordComponent } from './features/auth/forgot-password/forgot-password.component';
+import { NewPasswordComponent } from './features/auth/new-password/new-password.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +45,8 @@ import { ValidateEmailComponent } from './features/auth/validate-email/validate-
     AppNumbersOnlyDirective,
     ValidatenewComponent,
     ValidateEmailComponent,
+    ForgotPasswordComponent,
+    NewPasswordComponent,
     
     
 
