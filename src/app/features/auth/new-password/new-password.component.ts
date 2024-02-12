@@ -5,6 +5,7 @@ import { AuthService } from '../services/auth.service';
 import { CookieService } from 'ngx-cookie-service';
 import { Router } from '@angular/router';
 import { NgToastService } from 'ng-angular-popup';
+import { NewPasswordRequest } from '../models/new-password.model';
 
 @Component({
   selector: 'app-new-password',
@@ -14,15 +15,14 @@ import { NgToastService } from 'ng-angular-popup';
 export class NewPasswordComponent {
   @ViewChild('form', { static: true }) form!: NgForm; 
 
-  mod:{confirmPassword:string};
-  model:SignupRequest;
+ // mod:{password:string,confirmPassword:string};
+  model:NewPasswordRequest;
   // @ViewChild('form')
   // form!: NgForm;
   password: string = '';
   passwordError: string = '';
   fieldValidation: { [key: string]: boolean } = {};
-  invalidEmail: boolean = true;
-  emailPattern: RegExp = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/
+ 
 
   passwordPattern: RegExp = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/;
   uppercaseError:boolean= false;
@@ -48,27 +48,20 @@ export class NewPasswordComponent {
       private toast:NgToastService
       ) {
     
-    this.mod = {
+    this.model = {
+      password:'',
       confirmPassword:''
     };
-    this.model={
-      username: '',
-      password: '',
-      roles:["User"]
-      
-    };
+   
   this.fieldValidation['confirmPassword']=true;
 
    
   }
-  validateEmail():void{
-    this.invalidEmail=!this.emailPattern.test(this.model.username);
-    
-  }
+
 
   
   validateConfirmPassword(): void {
-    this.fieldValidation['confirmPassword'] = this.model.password === this.mod.confirmPassword;
+    this.fieldValidation['confirmPassword'] = this.model.password === this.model.confirmPassword;
   }
   
   onConfirmPasswordInput(): void {
@@ -115,7 +108,7 @@ export class NewPasswordComponent {
     // this.router.navigateByUrl('/');
    
 
-    if(this.model.password===''&&this.model.username===''&&this.mod.confirmPassword==='') {
+    if(this.model.password===''&&this.model.confirmPassword==='') {
       this.clicked=false;
       this.toast.warning({detail:"ERROR",summary:'Please fill all the details!',duration:2000,position:'topCenter'});
       return;
@@ -126,12 +119,8 @@ export class NewPasswordComponent {
       this.toast.warning({detail:"ERROR",summary:'Password can not be empty!',duration:2000,position:'topCenter'});
       return;
     }
-    if(this.model.username===''){
-      this.clicked=false;
-      this.toast.warning({detail:"ERROR",summary:'Email can not be empty',duration:2000,position:'topCenter'});
-      return;
-    }
-    if(this.mod.confirmPassword!==this.model.password){
+   
+    if(this.model.confirmPassword!==this.model.password){
       this.clicked=false;
       this.toast.warning({detail:"MISMATCH",summary:'confirm password should match password',duration:2000,position:'topCenter'});
       // alert("confirm password should match password");
@@ -151,12 +140,7 @@ export class NewPasswordComponent {
       return;
     }
 
-    if(this.invalidEmail){
-      this.clicked=false;
-      this.toast.warning({detail:"INVALID",summary:'Please enter a valid email',duration:2000,position:'topCenter'});
-      // alert('Please enter a valid email');
-      return;
-    }
+   
     
     if(this.uppercaseError||this.lowercaseError||this.digitError||this.specialCharError||this.minlengthError 
     ){
@@ -166,66 +150,66 @@ export class NewPasswordComponent {
     }
     
 
-    this.authService.register(this.model)
-      .subscribe({
-        next: (response) => {
+  //   this.authService.register(this.model)
+  //     .subscribe({
+  //       next: (response) => {
           
 
-          console.log(this.model);
-          console.log(response);
-          this.toast.success({detail:"SUCCESS",summary:'Registered successfully!',duration:2000, position:'topCenter'});
+  //         console.log(this.model);
+  //         console.log(response);
+  //         this.toast.success({detail:"SUCCESS",summary:'Registered successfully!',duration:2000, position:'topCenter'});
          
-          this.authService.generateToken(response.id)
-          .subscribe({
+  //         this.authService.generateToken(response.id)
+  //         .subscribe({
             
-            next:(res)=>{
-              this.clicked=false;
-              console.log(res.mssg);
+  //           next:(res)=>{
+  //             this.clicked=false;
+  //             console.log(res.mssg);
               
-              this.router.navigateByUrl(`/validateEmail/${response.id}/${this.model.username}`);
-            },
+  //             this.router.navigateByUrl(`/validateEmail/${response.id}/${this.model.username}`);
+  //           },
 
-            error:(err)=>{
-              this.clicked=false;
-              console.log(err,"err");
+  //           error:(err)=>{
+  //             this.clicked=false;
+  //             console.log(err,"err");
               
-              this.toast.warning({detail:"Server error",summary:`${err.error}! Click on resend token`,duration:5000, position:'topCenter'});
+  //             this.toast.warning({detail:"Server error",summary:`${err.error}! Click on resend token`,duration:5000, position:'topCenter'});
          
-              this.router.navigateByUrl(`/validateEmail/${response.id}/${this.model.username}`);
+  //             this.router.navigateByUrl(`/validateEmail/${response.id}/${this.model.username}`);
             
                 
-            }
-          })
+  //           }
+  //         })
   
-        }
-        ,
-        error:(err)=>{
+  //       }
+  //       ,
+  //       error:(err)=>{
           
-          this.clicked=false;
-          if(err.status==0){
-            this.toast.error({detail:"ERROR",summary:'Server error! Please try again later',duration:2000,position:'topCenter'});
+  //         this.clicked=false;
+  //         if(err.status==0){
+  //           this.toast.error({detail:"ERROR",summary:'Server error! Please try again later',duration:2000,position:'topCenter'});
           
-          }else{
-            this.toast.error({detail:"ERROR",summary:`${err.error}`,duration:2000,position:'topCenter'});
+  //         }else{
+  //           this.toast.error({detail:"ERROR",summary:`${err.error}`,duration:2000,position:'topCenter'});
           
-          }
-           // alert("Oops!Try again");
-          this.clearForm();
+  //         }
+  //          // alert("Oops!Try again");
+  //         this.clearForm();
             
-        }
-      });
-  }
+  //       }
+  //     });
+  // }
 
-  clearForm():void{
-    this.model={
-      username: '',
-      password: '',
-      roles:["User"]
+  // clearForm():void{
+  //   this.model={
+  //     username: '',
+  //     password: '',
+  //     roles:["User"]
       
-    };
-    this.mod={
-      confirmPassword: '',
-    }
+  //   };
+  //   this.mod={
+  //     confirmPassword: '',
+  //   }
 
   }
 

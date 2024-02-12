@@ -1,3 +1,4 @@
-// export interface NewPasswordRequest{
-//     pass
-// }
+export interface NewPasswordRequest{
+    password:string;
+    confirmPassword:string;
+}
