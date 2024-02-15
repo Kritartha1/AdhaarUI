@@ -32,8 +32,6 @@ export class ValidateEmailComponent implements OnInit,OnDestroy{
         
         token:''
       }
-      
-    
     
   }
   

@@ -1,29 +1,33 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, NgForm } from '@angular/forms';
 import { SignupRequest } from '../models/signup-request';
 import { AuthService } from '../services/auth.service';
 import { CookieService } from 'ngx-cookie-service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NgToastService } from 'ng-angular-popup';
 import { NewPasswordRequest } from '../models/new-password.model';
+import { Subscription } from 'rxjs';
+import { PasswordChangeRequest } from '../models/password-change.model';
 
 @Component({
   selector: 'app-new-password',
   templateUrl: './new-password.component.html',
   styleUrls: ['./new-password.component.css']
 })
-export class NewPasswordComponent {
+export class NewPasswordComponent implements OnInit,OnDestroy {
   @ViewChild('form', { static: true }) form!: NgForm; 
 
  // mod:{password:string,confirmPassword:string};
-  model:NewPasswordRequest;
+  model:PasswordChangeRequest;
   // @ViewChild('form')
   // form!: NgForm;
   password: string = '';
   passwordError: string = '';
   fieldValidation: { [key: string]: boolean } = {};
- 
 
+  paramsSubscription?: Subscription;
+  authSubscription?:Subscription;
+ 
   passwordPattern: RegExp = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/;
   uppercaseError:boolean= false;
   lowercaseError:boolean = false;
@@ -34,10 +38,13 @@ export class NewPasswordComponent {
   showPasswordStrength:boolean=false;
   clicked:boolean=false;
   showConf:boolean=false;
+  showToken:boolean=false;
+  error_:string='';
 
   
   passwordInputType: string = 'password';
   confPass:string = 'password';
+  email:string|null='';
   //eyeclicked:boolean=false;
     
 
@@ -45,17 +52,42 @@ export class NewPasswordComponent {
      private cookieService: CookieService,
       private router: Router,
       private fb: FormBuilder,
-      private toast:NgToastService
+      private toast:NgToastService,
+      private route: ActivatedRoute
       ) {
     
     this.model = {
       password:'',
-      confirmPassword:''
+      confirmPassword:'',
+      email:'',
+      token:'',
     };
    
   this.fieldValidation['confirmPassword']=true;
 
    
+  }
+  
+  ngOnInit(): void {
+    this.paramsSubscription = this.route.paramMap.subscribe(
+      {
+        next: (params) => {
+          
+          
+            this.email=params.get('email');
+            if(this.email!==null){
+              this.model.email=this.email;
+
+            }else{
+              throw new Error('Could not fetch email');
+            }
+          
+        },
+        error:(err)=>{
+          console.log("email not fetched");
+        }
+        
+        });
   }
 
 
@@ -99,15 +131,9 @@ export class NewPasswordComponent {
     event.stopPropagation(); // Stop the event from propagating further
   }
 
- 
+  onPasswordChangeClick():void{
 
- 
-  onFormSubmit(): void {
     this.clicked=true;
-   
-    // this.router.navigateByUrl('/');
-   
-
     if(this.model.password===''&&this.model.confirmPassword==='') {
       this.clicked=false;
       this.toast.warning({detail:"ERROR",summary:'Please fill all the details!',duration:2000,position:'topCenter'});
@@ -148,6 +174,43 @@ export class NewPasswordComponent {
       this.toast.warning({detail:"INVALID",summary:'Please enter a valid password',duration:2000,position:'topCenter'});
       return;
     }
+
+    this.showToken=true;
+
+    this.clicked=false;
+
+
+  }
+
+ 
+
+ 
+  onFormSubmit(): void {
+    if(this.model.token==''){
+      this.error_="Token required";
+      return;
+    }
+    this.clicked=true;
+
+   
+    // this.router.navigateByUrl('/');
+   
+
+   
+    this.authSubscription=this.authService.changePassword(this.model).subscribe({
+      next:(res)=>{
+        
+        this.toast.success({detail:"SUCCESS",summary:'Password changed successfully!',duration:2000, position:'topCenter'});
+        this.router.navigateByUrl('/login'); 
+        
+      },
+      error:(err)=>{
+
+        this.toast.error({detail:"Error",summary:`${err.error}`,duration:2000, position:'topCenter'});
+
+      }
+    })
+    this.clicked=false;
     
 
   //   this.authService.register(this.model)
@@ -210,6 +273,14 @@ export class NewPasswordComponent {
   //   this.mod={
   //     confirmPassword: '',
   //   }
+
+
+
+  }
+
+  ngOnDestroy(): void {
+    this.authSubscription?.unsubscribe();
+    this.paramsSubscription?.unsubscribe();
 
   }
 
