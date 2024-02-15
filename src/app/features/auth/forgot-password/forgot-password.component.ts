@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { AuthService } from '../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-forgot-password',
@@ -7,8 +9,29 @@ import { Component } from '@angular/core';
 })
 export class ForgotPasswordComponent {
 
+  email:string;
+
+  constructor(private authService:AuthService,private router: Router) {
+    this.email='';
+    
+  }
+
+
+
   onFormSubmit():void{
-    console.log("haha");
+    this.authService.generatePasswordToken(this.email).subscribe(
+      {
+        next:(res)=>{
+          console.log("Password token generated!");
+          this.router.navigateByUrl(`/newpassword/${this.email}`);
+        },
+        error:(err)=>{
+          alert(err.error);
+        }
+      }
+    )
+    
+   // console.log("haha");
   }
 
 }

@@ -12,6 +12,7 @@ import { RegisterRequest } from '../models/register-request';
 
 import { TokenResponse } from '../models/token-response';
 import { EmailValidationResponse } from '../models/email-validation-message-response';
+import { PasswordChangeRequest } from '../models/password-change.model';
 
 @Injectable({
   providedIn: 'root'
@@ -56,6 +57,19 @@ export class AuthService {
   confirmEmail(token:string,email:string):Observable<EmailValidationResponse>{
     return this.http.post<EmailValidationResponse>(`${environment.apiBaseUrl}/api/Auth/ConfirmEmail`,{token:token,email:email }
     );
+  }
+  
+  generatePasswordToken(email:string):Observable<EmailValidationResponse>{
+    return this.http.get<EmailValidationResponse>(`${environment.apiBaseUrl}/api/Auth/PasswordReset/${email}`);
+  }
+
+  changePassword(request:PasswordChangeRequest):Observable<EmailValidationResponse>{
+    return this.http.post<EmailValidationResponse>(`${environment.apiBaseUrl}/api/Auth/change-password`,{
+      passsword:request.password,
+      confirmPassword:request.confirmPassword,
+      email:request.email,
+      token:request.token
+    });
   }
   
   setuser(user: User): void {
