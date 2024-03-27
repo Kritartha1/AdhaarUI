@@ -182,15 +182,69 @@ export class NewPasswordComponent implements OnInit,OnDestroy {
 
   }
 
- 
+  dummy():void{
+    if(this.model.token==''){
+      this.error_='Token required';
+    }else{
+      this.error_='';
+    }
+    
+  }
 
  
   onFormSubmit(): void {
+
+    if(this.model.password===''&&this.model.confirmPassword==='') {
+      this.clicked=false;
+      this.toast.warning({detail:"ERROR",summary:'Please fill all the details!',duration:2000,position:'topCenter'});
+      return;
+    }
+
+    if(this.model.password===''){
+      this.clicked=false;
+      this.toast.warning({detail:"ERROR",summary:'Password can not be empty!',duration:2000,position:'topCenter'});
+      return;
+    }
+    
+    if(this.model.confirmPassword!==this.model.password){
+      this.clicked=false;
+      this.toast.warning({detail:"MISMATCH",summary:'confirm password should match password',duration:2000,position:'topCenter'});
+      // alert("confirm password should match password");
+      return;
+    }
+
+    if(this.form.invalid) {
+      this.clicked=false;
+      this.toast.warning({detail:"ERROR",summary:'Please fillup all the credentials',duration:2000,position:'topCenter'});
+      //alert("Please put valid credentials");
+      return;
+    }
+    if(!(this.fieldValidation['confirmPassword'])){
+      this.clicked=false;
+      this.toast.warning({detail:"MISMATCH",summary:'confirm password should match password',duration:2000,position:'topCenter'});
+      // alert("Password and confirm password does not match");
+      return;
+    }
+
+    if(this.uppercaseError||this.lowercaseError||this.digitError||this.specialCharError||this.minlengthError 
+    ){
+      this.clicked=false;
+      this.toast.warning({detail:"INVALID",summary:'Please enter a valid password',duration:2000,position:'topCenter'});
+      return;
+    }
+    
+
+
+
+    ///////////////////////////////////////
     if(this.model.token==''){
+      console.log('token?');
       this.error_="Token required";
       return;
     }
     this.clicked=true;
+
+    console.log(this.model);
 
    
     // this.router.navigateByUrl('/');
@@ -205,9 +259,16 @@ export class NewPasswordComponent implements OnInit,OnDestroy {
         
       },
       error:(err)=>{
+        
+        if(err.status==412){
 
-        this.toast.error({detail:"Error",summary:`${err.error}`,duration:2000, position:'topCenter'});
+          this.toast.error({detail:"Error",summary:`Invalid token. Please regenerate a token`,duration:2000, position:'topCenter'});
 
+        }else{
+          this.toast.error({detail:"Error",summary:'Server error',duration:2000,position:'topCenter'});
+        }
+
+        
       }
     })
     this.clicked=false;
@@ -276,6 +337,27 @@ export class NewPasswordComponent implements OnInit,OnDestroy {
 
 
 
+  }
+
+
+  onRegenToken():void{
+    this.authService.generatePasswordToken(this.model.email).subscribe(
+      {
+        next:(res)=>{
+          console.log("Password token generated!");
+          this.toast.success({detail:"Email",summary:'Token sent to your email!',duration:2000,position:'topCenter'});
+    
+          
+        },
+        error:(err)=>{
+          this.toast.error({detail:"ERROR",summary:`${err.error}`,duration:2000,position:'topCenter'});
+    
+          
+        }
+      }
+    )
+    
+   // console.log("haha");
   }
 
   ngOnDestroy(): void {

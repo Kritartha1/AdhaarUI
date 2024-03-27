@@ -64,9 +64,10 @@ export class AuthService {
   }
 
   changePassword(request:PasswordChangeRequest):Observable<EmailValidationResponse>{
+    
     return this.http.post<EmailValidationResponse>(`${environment.apiBaseUrl}/api/Auth/change-password`,{
-      passsword:request.password,
-      confirmPassword:request.confirmPassword,
+      password:request.password,
+      confirmpassword:request.confirmPassword,
       email:request.email,
       token:request.token
     });

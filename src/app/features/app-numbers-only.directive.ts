@@ -15,8 +15,6 @@ export class AppNumbersOnlyDirective {
     if (initialValue !== this.el.nativeElement.value) {
       event.stopPropagation();
     }
-
-    
   }
   
 

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
+import { NgToastService } from 'ng-angular-popup';
 
 @Component({
   selector: 'app-forgot-password',
@@ -11,7 +12,7 @@ export class ForgotPasswordComponent {
 
   email:string;
 
-  constructor(private authService:AuthService,private router: Router) {
+  constructor(private authService:AuthService,private router: Router,private toast:NgToastService) {
     this.email='';
     
   }
@@ -23,10 +24,14 @@ export class ForgotPasswordComponent {
       {
         next:(res)=>{
           console.log("Password token generated!");
+          this.toast.success({detail:"Email",summary:'Token sent to your email!',duration:2000,position:'topCenter'});
+    
           this.router.navigateByUrl(`/newpassword/${this.email}`);
         },
         error:(err)=>{
-          alert(err.error);
+          this.toast.error({detail:"ERROR",summary:`${err.error}`,duration:2000,position:'topCenter'});
+    
+          
         }
       }
     )
